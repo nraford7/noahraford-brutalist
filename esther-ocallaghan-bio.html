@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esther O'Callaghan OBE — Biography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Backgrounds */
+            --bg-deep: #0a0a0c;
+            --bg-elevated: #111114;
+            --bg-surface: #18181c;
+            --bg-hover: #222228;
+
+            /* Foreground */
+            --fg: #f5f5f0;
+            --fg-muted: #a1a1aa;
+            --fg-dim: #71717a;
+
+            /* Accent (Gold) */
+            --accent: #d4a855;
+            --accent-hover: #e4bc6a;
+            --accent-glow: rgba(212, 168, 85, 0.15);
+            --accent-subtle: rgba(212, 168, 85, 0.12);
+            --accent-light: #e8c882;
+
+            /* Status - Warm palette */
+            --success: #a3b18a;
+            --success-bg: rgba(163, 177, 138, 0.12);
+            --error: #bc6c6c;
+            --error-bg: rgba(188, 108, 108, 0.1);
+
+            /* Borders */
+            --border: rgba(255, 255, 255, 0.06);
+            --border-accent: rgba(212, 168, 85, 0.3);
+
+            /* Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+            background: var(--bg-deep);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--fg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'kern' 1, 'liga' 1;
+        }
+
+        /* Atmospheric background with stronger gradients */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 15% -10%, var(--accent-subtle) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 110%, var(--accent-subtle) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(212, 168, 85, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Noise texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll-triggered animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Header - slightly offset left for asymmetry */
+        .header {
+            text-align: left;
+            margin-bottom: 72px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border);
+            padding-left: 8px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .header-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.2s forwards;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            color: var(--fg);
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.3s forwards;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--fg-muted);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.4s forwards;
+        }
+
+        .honors {
+            margin-top: 24px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.5s forwards;
+        }
+
+        /* Bio sections */
+        .bio-section {
+            margin-bottom: 56px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .bio-section:nth-child(2) { animation-delay: 0.1s; }
+        .bio-section:nth-child(3) { animation-delay: 0.15s; }
+        .bio-section:nth-child(4) { animation-delay: 0.2s; }
+        .bio-section:nth-child(5) { animation-delay: 0.25s; }
+        .bio-section:nth-child(6) { animation-delay: 0.3s; }
+
+        .section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        p {
+            margin-bottom: 22px;
+            font-size: 1.05rem;
+            color: var(--fg-muted);
+            line-height: 1.75;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            font-weight: 500;
+            color: var(--fg);
+        }
+
+        /* Quote - wider than body, with slide-in animation */
+        .quote {
+            margin: 56px -40px;
+            padding: 40px 56px;
+            background: var(--bg-elevated);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--fg);
+            line-height: 1.75;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 0.7s ease forwards;
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.15;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-attribution {
+            margin-top: 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            font-style: normal;
+            color: var(--fg-dim);
+            letter-spacing: 0.08em;
+        }
+
+        /* Highlights - asymmetric grid */
+        .highlights {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            margin: 56px 0;
+        }
+
+        .highlights .highlight:nth-child(2) {
+            margin-top: 24px;
+        }
+
+        .highlights .highlight:nth-child(3) {
+            margin-top: -12px;
+        }
+
+        .highlight {
+            padding: 28px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: var(--transition-base);
+            opacity: 0;
+            animation: countUp 0.5s ease forwards;
+        }
+
+        .highlight:nth-child(1) { animation-delay: 0.1s; }
+        .highlight:nth-child(2) { animation-delay: 0.2s; }
+        .highlight:nth-child(3) { animation-delay: 0.3s; }
+        .highlight:nth-child(4) { animation-delay: 0.4s; }
+
+        .highlight:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .highlight-number {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .highlight-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--fg-dim);
+            line-height: 1.5;
+        }
+
+        /* Career timeline - with vertical connector */
+        .timeline {
+            margin: 48px 0;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--border) 30%, var(--border) 70%, transparent);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 20px;
+            padding: 16px 0 16px 16px;
+            margin-left: -24px;
+            border-bottom: none;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 22px;
+            width: 8px;
+            height: 8px;
+            background: var(--bg-deep);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .timeline-item:hover {
+            background: var(--bg-surface);
+            margin-left: -24px;
+            margin-right: -16px;
+            padding: 16px 16px 16px 40px;
+            border-radius: var(--radius-sm);
+        }
+
+        .timeline-item:first-child::before {
+            background: var(--accent);
+        }
+
+        .timeline-period {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding-top: 3px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--fg);
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--fg-dim);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Matching Index Section */
+        .matching-index {
+            margin-top: 96px;
+            padding-top: 72px;
+            border-top: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .matching-index::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .matching-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .matching-header h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .matching-header p {
+            font-size: 1rem;
+            color: var(--fg-dim);
+            font-style: italic;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        /* Primary index sections - larger */
+        .index-section {
+            margin-bottom: 32px;
+            padding: 28px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: var(--transition-base);
+        }
+
+        .index-section:hover {
+            border-color: var(--border-accent);
+        }
+
+        .index-section.featured {
+            padding: 36px;
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(212, 168, 85, 0.03) 100%);
+        }
+
+        .index-section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .index-section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 7px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            cursor: default;
+        }
+
+        .tag:hover {
+            transform: scale(1.04);
+        }
+
+        .tag-primary {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        .tag-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .tag-secondary {
+            background: var(--accent-light);
+            color: var(--bg-deep);
+        }
+
+        .tag-secondary:hover {
+            background: var(--accent);
+        }
+
+        .tag-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--fg-muted);
+        }
+
+        .tag-outline:hover {
+            border-color: var(--fg-dim);
+            color: var(--fg);
+            background: var(--bg-surface);
+        }
+
+        .index-list {
+            list-style: none;
+        }
+
+        .index-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: var(--fg-muted);
+            transition: var(--transition-fast);
+        }
+
+        .index-list li:hover {
+            color: var(--fg);
+            padding-left: 8px;
+        }
+
+        .index-list li:last-child {
+            border-bottom: none;
+        }
+
+        .index-list li::before {
+            content: '\2192';
+            color: var(--accent);
+            font-weight: 500;
+            flex-shrink: 0;
+            transition: var(--transition-fast);
+        }
+
+        .index-list li:hover::before {
+            transform: translateX(4px);
+        }
+
+        .index-list li strong {
+            font-weight: 600;
+            color: var(--fg);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .working-style-item {
+            padding: 18px;
+            background: var(--bg-surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            transition: var(--transition-fast);
+        }
+
+        .working-style-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .working-style-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .working-style-value {
+            font-size: 0.9rem;
+            color: var(--fg-muted);
+            line-height: 1.55;
+        }
+
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .fit-box {
+            padding: 22px;
+            border-radius: var(--radius-md);
+        }
+
+        .fit-box.good {
+            background: var(--success-bg);
+            border: 1px solid rgba(163, 177, 138, 0.25);
+        }
+
+        .fit-box.bad {
+            background: var(--error-bg);
+            border: 1px solid rgba(188, 108, 108, 0.2);
+        }
+
+        .fit-box h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .fit-box.good h4 {
+            color: var(--success);
+        }
+
+        .fit-box.bad h4 {
+            color: var(--error);
+        }
+
+        .fit-box ul {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+
+        .fit-box ul li {
+            padding: 5px 0;
+            padding-left: 22px;
+            position: relative;
+            color: var(--fg-muted);
+            line-height: 1.5;
+        }
+
+        .fit-box.good ul li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .fit-box.bad ul li::before {
+            content: '\2717';
+            position: absolute;
+            left: 0;
+            color: var(--error);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 96px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            color: var(--fg-dim);
+            letter-spacing: 0.12em;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        /* Focus states */
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 60px 24px 40px;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            .quote {
+                margin: 40px -12px;
+                padding: 28px 24px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .highlights .highlight:nth-child(2),
+            .highlights .highlight:nth-child(3) {
+                margin-top: 0;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding-left: 12px;
+            }
+
+            .timeline-item:hover {
+                padding-left: 28px;
+            }
+
+            .two-column,
+            .fit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-label">Biography</div>
+            <h1>Esther O'Callaghan</h1>
+            <p class="subtitle">Founder, Advisor & Social Impact Leader</p>
+            <p class="honors">OBE · Freeman of the City of London</p>
+        </header>
+
+        <section class="bio-section">
+            <p>
+                <strong>Esther O'Callaghan</strong> is a founder, strategic advisor, and social impact leader whose career spans music, philanthropy, government, and technology. Recognized with an OBE for services to the voluntary sector and honored as a Freeman of the City of London, she has spent two decades building organizations, advising governments, and championing the next generation.
+            </p>
+            <p>
+                Her path defies convention. Growing up in a single-parent family on free school meals, she understood poverty firsthand—an experience that would shape everything that followed.
+            </p>
+        </section>
+
+        <section class="bio-section">
+            <h2 class="section-title">The Early Years: Manchester & Music</h2>
+            <p>
+                At 19, Esther moved to Manchester and became the <strong>first female DJ to own and run a specialist vinyl store</strong> in the UK. What began as a passion for music became a platform: she DJ'd across Europe, toured with <strong>Massive Attack</strong>, and joined the original production team for <strong>Gorillaz's "Demon Days Live"</strong> at Manchester International Festival.
+            </p>
+            <p>
+                But the record shop was never just about music. Using profits from events, she established a music foundation that helped <strong>2,500 young people aged 14-16</strong> re-engage with education, training, and employment—proving that creativity could be a vehicle for change.
+            </p>
+        </section>
+
+        <div class="quote">
+            If you want to engage young people in education, in learning, in skills development, you need to make it engaging, rewarding, and fun. You need to meet them where they are—and really decide if you want to raise humans to fit the system, or make the system fit around them.
+            <div class="quote-attribution">— Esther O'Callaghan</div>
+        </div>
+
+        <section class="bio-section">
+            <h2 class="section-title">Philanthropy & Public Service</h2>
+            <p>
+                Her grassroots work led to national recognition. Esther joined the <strong>Community Foundation for Greater Manchester</strong>, where she witnessed how even £500 could transform a local community group. This sparked a deeper commitment to philanthropy and systems change.
+            </p>
+            <p>
+                She went on to serve on the <strong>National Board of the Big Lottery Fund</strong>—the single largest lottery distributor for good causes across the UK—and the <strong>Spirit of 2012 Olympic Legacy Endowment Fund</strong>. At the government level, she contributed as an expert to the <strong>House of Lords skills white paper</strong>, shaping national policy on workforce development.
+            </p>
+        </section>
+
+        <div class="highlights">
+            <div class="highlight">
+                <div class="highlight-number">250,000</div>
+                <div class="highlight-label">Young people supported through her COVID-era startup</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">2,500</div>
+                <div class="highlight-label">Youth re-engaged through her music foundation</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">7</div>
+                <div class="highlight-label">Years building Global Tech Advocates</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">2</div>
+                <div class="highlight-label">Mentees who went on to win Dragon's Den</div>
+            </div>
+        </div>
+
+        <section class="bio-section">
+            <h2 class="section-title">Founder: Building During the Storm</h2>
+            <p>
+                When COVID hit, Esther did what she'd always done: built something. Her startup supported <strong>a quarter million young people across the UK</strong> to develop the skills they needed for work. It was, by her own account, "the hardest piece of work I've ever done."
+            </p>
+            <p>
+                A first-time founder navigating a two-sided marketplace, she raised through the frothy angel and seed markets before the 2022 crash made everything harder. The company went through an acquisition of another business, and ultimately the startup itself was acquired—leaving Esther with hard-won lessons and deep empathy for what founders face.
+            </p>
+            <p>
+                "The benefit now is I can see the patterns of repeating mistakes that most founders make," she reflects. "Largely because they're too close to the problem they're trying to solve."
+            </p>
+        </section>
+
+        <section class="bio-section">
+            <h2 class="section-title">Today: Advisor & Advocate</h2>
+            <p>
+                Now based in the UAE, Esther serves on the advisory board of <strong>Global Tech Advocates</strong>, the world's largest volunteer-led network across the technology industry, where she has worked alongside founder Russ Shaw for seven years.
+            </p>
+            <p>
+                She mentors female-founded startups—two of her mentees independently went on to win <strong>Dragon's Den</strong> and are now building materially successful scale-ups. She remains a domain expert in <strong>skills, workforce policy, and the future of learning and work</strong>, with particular focus on emerging markets and intergenerational mobility.
+            </p>
+            <p>
+                A <strong>qualified British Triathlon coach</strong>, she finds her greatest joy in helping others succeed. "I get the most joy from seeing other people fulfill their goals," she says. "The joy comes from having contributed to that in a meaningful way."
+            </p>
+        </section>
+
+        <div class="quote">
+            You can't build the future without the future builders. A disenfranchised youth population at scale has, in history, generally not turned out that great.
+            <div class="quote-attribution">— On the global skills gap</div>
+        </div>
+
+        <section class="bio-section">
+            <h2 class="section-title">Selected Positions</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-period">Current</span>
+                    <div class="timeline-content">
+                        <h3>Advisory Board, Global Tech Advocates</h3>
+                        <p>World's largest volunteer-led tech network</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Founder & CEO, EdTech Startup</h3>
+                        <p>Skills platform supporting 250,000 young people (acquired)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Board Member, Big Lottery Fund</h3>
+                        <p>UK's largest lottery distributor for good causes</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Board Member, Spirit of 2012</h3>
+                        <p>Olympic Legacy Endowment Fund</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Expert Contributor, House of Lords</h3>
+                        <p>Skills white paper development</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Founder, Music Foundation</h3>
+                        <p>Youth re-engagement through music education</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Producer, Manchester International Festival</h3>
+                        <p>Original team for Gorillaz "Demon Days Live"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MATCHING INDEX ===== -->
+        <div class="matching-index">
+            <div class="matching-header">
+                <h2>Opportunity Matching Index</h2>
+                <p>Quick reference for connecting Esther to relevant projects and opportunities</p>
+            </div>
+
+            <!-- Core Expertise -->
+            <div class="index-section featured">
+                <h3 class="index-section-title">Core Expertise</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">Executive Production</span>
+                    <span class="tag tag-primary">Strategic Advisory</span>
+                    <span class="tag tag-primary">Board Governance</span>
+                    <span class="tag tag-secondary">Startup Advisory</span>
+                    <span class="tag tag-secondary">Founder Coaching</span>
+                    <span class="tag tag-secondary">M&A / Acquisitions</span>
+                    <span class="tag tag-secondary">Fundraising (Angel/Seed)</span>
+                    <span class="tag tag-outline">Policy Development</span>
+                    <span class="tag tag-outline">Grant-Making</span>
+                    <span class="tag tag-outline">Philanthropy Strategy</span>
+                    <span class="tag tag-outline">Event Production</span>
+                    <span class="tag tag-outline">Two-Sided Marketplaces</span>
+                </div>
+            </div>
+
+            <!-- Sector Experience -->
+            <div class="index-section featured">
+                <h3 class="index-section-title">Sector Experience</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">EdTech / Skills</span>
+                    <span class="tag tag-primary">Workforce Development</span>
+                    <span class="tag tag-primary">Social Impact</span>
+                    <span class="tag tag-secondary">Government / Public Sector</span>
+                    <span class="tag tag-secondary">Philanthropy / Foundations</span>
+                    <span class="tag tag-secondary">Technology / Digital</span>
+                    <span class="tag tag-outline">Music / Creative Industries</span>
+                    <span class="tag tag-outline">Events / Festivals</span>
+                </div>
+            </div>
+
+            <!-- Sectors of Interest -->
+            <div class="index-section">
+                <h3 class="index-section-title">Current Sectors of Interest</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">Defense & Security</span>
+                    <span class="tag tag-primary">AI & Digital Transformation</span>
+                    <span class="tag tag-primary">Energy Transition</span>
+                    <span class="tag tag-secondary">Future of Work</span>
+                    <span class="tag tag-secondary">Youth & Education</span>
+                    <span class="tag tag-secondary">Emerging Markets</span>
+                </div>
+            </div>
+
+            <!-- Working Style -->
+            <div class="index-section">
+                <h3 class="index-section-title">Working Style</h3>
+                <div class="two-column">
+                    <div class="working-style-item">
+                        <div class="working-style-label">Superpower</div>
+                        <div class="working-style-value">"Makes things happen" — takes complex problems, finds simple solutions, delivers to deadline and budget</div>
+                    </div>
+                    <div class="working-style-item">
+                        <div class="working-style-label">Operating Level</div>
+                        <div class="working-style-value">Comfortable across strategic, operational, and commercial — prefers strategic/advisory</div>
+                    </div>
+                    <div class="working-style-item">
+                        <div class="working-style-label">Leadership Style</div>
+                        <div class="working-style-value">Inspirational leader who cares deeply about people; self-describes as "not a manager"</div>
+                    </div>
+                    <div class="working-style-item">
+                        <div class="working-style-label">Standards</div>
+                        <div class="working-style-value">High — "I work hard and I'm also hard work." Quality, credibility, and integrity are non-negotiable</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ideal Engagements -->
+            <div class="index-section">
+                <h3 class="index-section-title">Ideal Engagement Types</h3>
+                <ul class="index-list">
+                    <li><strong>Advisory Board roles</strong> — strategic contribution with high-caliber peers</li>
+                    <li><strong>Executive Producer</strong> — pioneering projects, world-firsts, complex deliverables</li>
+                    <li><strong>Founder/Startup Advisory</strong> — pattern recognition, avoiding common mistakes (especially first-time founders)</li>
+                    <li><strong>Policy & Government</strong> — workforce, skills, digital transformation at ministerial level</li>
+                    <li><strong>Mentoring</strong> — particularly female founders and social impact ventures</li>
+                </ul>
+            </div>
+
+            <!-- Fit Criteria -->
+            <div class="index-section">
+                <h3 class="index-section-title">Fit Criteria</h3>
+                <div class="fit-grid">
+                    <div class="fit-box good">
+                        <h4>Good Fit</h4>
+                        <ul>
+                            <li>Pioneering / "world-first" projects</li>
+                            <li>Clear, measurable outcomes</li>
+                            <li>Working with experts at top of their game</li>
+                            <li>Complex problems requiring simple solutions</li>
+                            <li>Advisory roles with strategic influence</li>
+                            <li>Social impact or purpose-driven work</li>
+                            <li>UAE / MENA / Emerging markets focus</li>
+                            <li>Fixed deliverables with deadlines</li>
+                        </ul>
+                    </div>
+                    <div class="fit-box bad">
+                        <h4>Not a Fit</h4>
+                        <ul>
+                            <li>Early-stage startup operations (advisory OK)</li>
+                            <li>Work without measurable outcomes</li>
+                            <li>Pure management roles</li>
+                            <li>Endless meetings without action</li>
+                            <li>"Pointless" or bureaucratic work</li>
+                            <li>Projects where she can't see the needle move</li>
+                            <li>Low-trust environments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aspirations -->
+            <div class="index-section">
+                <h3 class="index-section-title">Aspirations & Development</h3>
+                <ul class="index-list">
+                    <li><strong>Geographic:</strong> Actively developing her work in the UAE and broader MENA region</li>
+                    <li><strong>Balance:</strong> Seeking the intersection of "things I'm good at" AND "things I enjoy" — not just competence</li>
+                    <li><strong>Impact:</strong> Wants to see the direct effect of her work; drawn to measurable, tangible outcomes</li>
+                    <li><strong>People:</strong> Prioritizes who she works with over the specific industry — people first, project second</li>
+                </ul>
+            </div>
+
+            <!-- Key Thesis -->
+            <div class="index-section">
+                <h3 class="index-section-title">Key Thesis / Contrarian View</h3>
+                <ul class="index-list">
+                    <li><strong>The skills gap is an existential risk.</strong> Growing inequality and youth disenfranchisement at scale is one of the biggest global risks we face. "You can't build the future without the future builders."</li>
+                    <li><strong>AI investment is overheated.</strong> Companies are overspending on AI products that aren't right for their business; expects a reckoning similar to the .com bubble.</li>
+                    <li><strong>Defense is the only game in town.</strong> Sees defense and security as where serious spend and attention is going globally, alongside energy transition.</li>
+                </ul>
+            </div>
+
+            <!-- Network & Credibility -->
+            <div class="index-section">
+                <h3 class="index-section-title">Network & Credibility</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">Global Tech Advocates</span>
+                    <span class="tag tag-secondary">UK Government / House of Lords</span>
+                    <span class="tag tag-secondary">Big Lottery Fund</span>
+                    <span class="tag tag-secondary">Olympic Legacy / Spirit of 2012</span>
+                    <span class="tag tag-outline">Manchester Tech/Music Scene</span>
+                    <span class="tag tag-outline">Female Founder Community</span>
+                    <span class="tag tag-outline">UAE Tech Ecosystem</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">Based in Dubai, UAE · Available for advisory, board, and strategic engagements</p>
+        </footer>
+    </div>
+</body>
+</html>
