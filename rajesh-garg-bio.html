@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajesh Garg — Biography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Backgrounds */
+            --bg-deep: #0a0a0c;
+            --bg-elevated: #111114;
+            --bg-surface: #18181c;
+            --bg-hover: #222228;
+
+            /* Foreground */
+            --fg: #f5f5f0;
+            --fg-muted: #a1a1aa;
+            --fg-dim: #71717a;
+
+            /* Accent (Gold) */
+            --accent: #d4a855;
+            --accent-hover: #e4bc6a;
+            --accent-glow: rgba(212, 168, 85, 0.15);
+            --accent-subtle: rgba(212, 168, 85, 0.12);
+            --accent-light: #e8c882;
+
+            /* Status - Warm palette */
+            --success: #a3b18a;
+            --success-bg: rgba(163, 177, 138, 0.12);
+            --error: #bc6c6c;
+            --error-bg: rgba(188, 108, 108, 0.1);
+
+            /* Borders */
+            --border: rgba(255, 255, 255, 0.06);
+            --border-accent: rgba(212, 168, 85, 0.3);
+
+            /* Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+            background: var(--bg-deep);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--fg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'kern' 1, 'liga' 1;
+        }
+
+        /* Atmospheric background with stronger gradients */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 15% -10%, var(--accent-subtle) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 110%, var(--accent-subtle) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(212, 168, 85, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Noise texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll-triggered animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Header - slightly offset left for asymmetry */
+        .header {
+            text-align: left;
+            margin-bottom: 72px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border);
+            padding-left: 8px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .header-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.2s forwards;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            color: var(--fg);
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.3s forwards;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--fg-muted);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.4s forwards;
+        }
+
+        .honors {
+            margin-top: 24px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.5s forwards;
+        }
+
+        /* Bio sections */
+        .bio-section {
+            margin-bottom: 56px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .bio-section:nth-child(2) { animation-delay: 0.1s; }
+        .bio-section:nth-child(3) { animation-delay: 0.15s; }
+        .bio-section:nth-child(4) { animation-delay: 0.2s; }
+        .bio-section:nth-child(5) { animation-delay: 0.25s; }
+        .bio-section:nth-child(6) { animation-delay: 0.3s; }
+
+        .section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--fg-muted);
+            line-height: 1.8;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            font-weight: 500;
+            color: var(--fg);
+        }
+
+        /* Quote - wider than body, with slide-in animation */
+        .quote {
+            margin: 56px -40px;
+            padding: 40px 56px;
+            background: var(--bg-elevated);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--fg);
+            line-height: 1.75;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 0.7s ease forwards;
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.15;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-attribution {
+            margin-top: 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            font-style: normal;
+            color: var(--fg-dim);
+            letter-spacing: 0.08em;
+        }
+
+        /* Highlights - asymmetric grid */
+        .highlights {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            margin: 56px 0;
+        }
+
+        .highlights .highlight:nth-child(2) {
+            margin-top: 24px;
+        }
+
+        .highlights .highlight:nth-child(3) {
+            margin-top: -12px;
+        }
+
+        .highlight {
+            padding: 28px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: var(--transition-base);
+            opacity: 0;
+            animation: countUp 0.5s ease forwards;
+        }
+
+        .highlight:nth-child(1) { animation-delay: 0.1s; }
+        .highlight:nth-child(2) { animation-delay: 0.2s; }
+        .highlight:nth-child(3) { animation-delay: 0.3s; }
+        .highlight:nth-child(4) { animation-delay: 0.4s; }
+
+        .highlight:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .highlight-number {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .highlight-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--fg-dim);
+            line-height: 1.5;
+        }
+
+        /* Career timeline - with vertical connector */
+        .timeline {
+            margin: 48px 0;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--border) 30%, var(--border) 70%, transparent);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 20px;
+            padding: 16px 0 16px 16px;
+            margin-left: -24px;
+            border-bottom: none;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 22px;
+            width: 8px;
+            height: 8px;
+            background: var(--bg-deep);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .timeline-item:hover {
+            background: var(--bg-surface);
+            margin-left: -24px;
+            margin-right: -16px;
+            padding: 16px 16px 16px 40px;
+            border-radius: var(--radius-sm);
+        }
+
+        .timeline-item:first-child::before {
+            background: var(--accent);
+        }
+
+        .timeline-period {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding-top: 3px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--fg);
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--fg-dim);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Matching Index Section */
+        .matching-index {
+            margin-top: 96px;
+            padding-top: 72px;
+            border-top: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .matching-index::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .matching-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .matching-header h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .matching-header p {
+            font-size: 1rem;
+            color: var(--fg-dim);
+            font-style: italic;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        /* Primary index sections - larger */
+        .index-section {
+            margin-bottom: 32px;
+            padding: 28px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: var(--transition-base);
+        }
+
+        .index-section:hover {
+            border-color: var(--border-accent);
+        }
+
+        .index-section.featured {
+            padding: 36px;
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(212, 168, 85, 0.03) 100%);
+        }
+
+        .index-section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .index-section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 7px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            cursor: default;
+        }
+
+        .tag:hover {
+            transform: scale(1.04);
+        }
+
+        .tag-primary {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        .tag-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .tag-secondary {
+            background: var(--accent-light);
+            color: var(--bg-deep);
+        }
+
+        .tag-secondary:hover {
+            background: var(--accent);
+        }
+
+        .tag-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--fg-muted);
+        }
+
+        .tag-outline:hover {
+            border-color: var(--fg-dim);
+            color: var(--fg);
+            background: var(--bg-surface);
+        }
+
+        .index-list {
+            list-style: none;
+        }
+
+        .index-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: var(--fg-muted);
+            transition: var(--transition-fast);
+        }
+
+        .index-list li:hover {
+            color: var(--fg);
+            padding-left: 8px;
+        }
+
+        .index-list li:last-child {
+            border-bottom: none;
+        }
+
+        .index-list li::before {
+            content: '\2192';
+            color: var(--accent);
+            font-weight: 500;
+            flex-shrink: 0;
+            transition: var(--transition-fast);
+        }
+
+        .index-list li:hover::before {
+            transform: translateX(4px);
+        }
+
+        .index-list li strong {
+            font-weight: 600;
+            color: var(--fg);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .working-style-item {
+            padding: 18px;
+            background: var(--bg-surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            transition: var(--transition-fast);
+        }
+
+        .working-style-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .working-style-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .working-style-value {
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            line-height: 1.55;
+        }
+
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .fit-box {
+            padding: 22px;
+            border-radius: var(--radius-md);
+        }
+
+        .fit-box.good {
+            background: var(--success-bg);
+            border: 1px solid rgba(163, 177, 138, 0.25);
+        }
+
+        .fit-box.bad {
+            background: var(--error-bg);
+            border: 1px solid rgba(188, 108, 108, 0.2);
+        }
+
+        .fit-box h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .fit-box.good h4 {
+            color: var(--success);
+        }
+
+        .fit-box.bad h4 {
+            color: var(--error);
+        }
+
+        .fit-box ul {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+
+        .fit-box ul li {
+            padding: 5px 0;
+            padding-left: 22px;
+            position: relative;
+            color: var(--fg-muted);
+            line-height: 1.5;
+        }
+
+        .fit-box.good ul li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .fit-box.bad ul li::before {
+            content: '\2717';
+            position: absolute;
+            left: 0;
+            color: var(--error);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 96px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            color: var(--fg-dim);
+            letter-spacing: 0.12em;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        /* Focus states */
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 60px 24px 40px;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            .quote {
+                margin: 40px -12px;
+                padding: 28px 24px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .highlights .highlight:nth-child(2),
+            .highlights .highlight:nth-child(3) {
+                margin-top: 0;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding-left: 12px;
+            }
+
+            .timeline-item:hover {
+                padding-left: 28px;
+            }
+
+            .two-column,
+            .fit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-label">Biography</div>
+            <h1>Rajesh Garg</h1>
+            <p class="subtitle">CFO, Transformation Leader & Technology Pioneer</p>
+            <p class="honors">Four Continents · Fortune 500 Executive · Early Tech Adopter</p>
+        </header>
+
+        <section class="bio-section">
+            <p>
+                <strong>Rajesh Garg</strong> is a transformation-oriented CFO and executive leader whose career spans four continents and some of the world's most recognized corporate brands. With deep expertise in finance, strategy, general management, technology, and sustainability, he has consistently delivered outsized value through bold strategic moves and disciplined execution.
+            </p>
+            <p>
+                His path is marked by pivotal moments where he challenged convention—divesting half a brand portfolio in his first year as CFO, building e-commerce platforms for a fraction of proposed budgets, and creating global shared services infrastructures across 69 countries. He operates with what his teams call "casual intensity"—approachable yet demanding, creative yet rigorous.
+            </p>
+        </section>
+
+        <section class="bio-section">
+            <h2 class="section-title">The P&G Years: Finance Meets Innovation</h2>
+            <p>
+                Rajesh's career began at <strong>Procter & Gamble</strong>, where he quickly distinguished himself. In his first year as CFO, he led the divestiture of half the brands in his portfolio—over significant internal resistance—achieving <strong>6x net present value</strong> on assets that were no longer strategic for the company.
+            </p>
+            <p>
+                He then drove strategic planning for <strong>Pampers across Latin America</strong>, leveraging data analysis to reset the brand's ambition and ultimately wrest market leadership from Kimberly-Clark. This analytical rigor led to an unexpected pivot: writing the original memo for pampers.com during the first dot-com era.
+            </p>
+            <p>
+                The result was P&G's e-commerce strategy for Pampers—delivered for <strong>$5 million versus the proposed $30 million</strong>, launched in six languages. It remains Procter & Gamble's largest e-business to this day.
+            </p>
+        </section>
+
+        <div class="quote">
+            We are overestimating the impact of AI in the next five years, but gravely underestimating the impact in the next ten. In ten years, the world will be a completely different place—humans able to do anything and everything at almost nothing in terms of cost.
+            <div class="quote-attribution">— Rajesh Garg, on the AI transformation</div>
+        </div>
+
+        <section class="bio-section">
+            <h2 class="section-title">Venture & Entrepreneurship</h2>
+            <p>
+                His technology instincts led him to <strong>P&G's $100 million Venture Capital Fund</strong>, where one investment became an obsession. Rajesh and three colleagues left to build a <strong>marketing cloud company</strong>, acquiring three businesses along the way. As CFO, he raised <strong>$45 million</strong> and landed Coca-Cola and Procter & Gamble as customers.
+            </p>
+            <p>
+                When P&G ultimately acquired the company, Rajesh was the only founder hired back—a testament to his unique ability to bridge corporate discipline with entrepreneurial velocity.
+            </p>
+        </section>
+
+        <div class="highlights">
+            <div class="highlight">
+                <div class="highlight-number">6x</div>
+                <div class="highlight-label">Net present value achieved on P&G brand divestiture</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">$45M</div>
+                <div class="highlight-label">Raised as CFO of marketing cloud startup</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">69</div>
+                <div class="highlight-label">Countries covered by Cadbury shared services build</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">10.5</div>
+                <div class="highlight-label">Years transforming Landmark Group</div>
+            </div>
+        </div>
+
+        <section class="bio-section">
+            <h2 class="section-title">Global Business Services & CFO Roles</h2>
+            <p>
+                At <strong>Cadbury Schweppes</strong> in London, Rajesh led four global projects to create a complete shared services backbone across 69 countries. This operational transformation positioned him for the CFO role at <strong>Cadbury Asia Pacific</strong>, overseeing finance, procurement, legal, and IT.
+            </p>
+            <p>
+                Subsequent roles included stints with <strong>Tesco</strong>, the British retailer, and a board position at <strong>Cipla</strong>, India's largest pharmaceutical company, where he mentored Nishant Saxena—who later became CEO of Cipla International.
+            </p>
+        </section>
+
+        <section class="bio-section">
+            <h2 class="section-title">Landmark Group: A Decade of Consolidation</h2>
+            <p>
+                For the past <strong>ten and a half years</strong>, Rajesh has served at <strong>Landmark Group</strong>, leading finance, infrastructure projects, and loyalty programs. His core achievement: transforming what was a set of disparate companies into a single, cohesive entity with robust back-office functions and strong governance.
+            </p>
+            <p>
+                More recently, he has focused extensively on <strong>sustainability</strong>—developing deep expertise in how it applies across industries and aspects of life. Though global agendas have slowed, he remains confident the focus will return.
+            </p>
+        </section>
+
+        <div class="quote">
+            The biggest opportunity we are all staring at is the onset of artificial intelligence—the trickle down into every aspect of life. It's the most dramatic shift since the invention of electricity, eventually leading to abundance and deflation.
+            <div class="quote-attribution">— On market opportunity</div>
+        </div>
+
+        <section class="bio-section">
+            <h2 class="section-title">Selected Positions</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-period">Current</span>
+                    <div class="timeline-content">
+                        <h3>Group CFO & Transformation Lead, Landmark Group</h3>
+                        <p>Finance, infrastructure, loyalty, governance consolidation</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Board Member, Cipla</h3>
+                        <p>India's largest pharmaceutical company</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Executive, Tesco</h3>
+                        <p>British multinational retailer</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>CFO, Cadbury Asia Pacific</h3>
+                        <p>Finance, procurement, legal, IT across the region</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Global Business Services Lead, Cadbury Schweppes</h3>
+                        <p>Created shared services across 69 countries</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>CFO, Marketing Cloud Startup</h3>
+                        <p>Raised $45M, acquired 3 companies, exited to P&G</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>Investment Team, P&G Venture Capital Fund</h3>
+                        <p>$100M strategic venture capital fund</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-period">Previous</span>
+                    <div class="timeline-content">
+                        <h3>E-Commerce & Strategy Lead, Pampers</h3>
+                        <p>Built pampers.com for $5M (vs $30M proposed), 6 languages</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MATCHING INDEX ===== -->
+        <div class="matching-index">
+            <div class="matching-header">
+                <h2>Opportunity Matching Index</h2>
+                <p>Quick reference for connecting Rajesh to relevant projects and opportunities</p>
+            </div>
+
+            <!-- Core Expertise -->
+            <div class="index-section featured">
+                <h3 class="index-section-title">Core Expertise</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">CFO / Finance Leadership</span>
+                    <span class="tag tag-primary">Cost Engineering</span>
+                    <span class="tag tag-primary">Technology Transformation</span>
+                    <span class="tag tag-secondary">Global Business Services</span>
+                    <span class="tag tag-secondary">Shared Services Design</span>
+                    <span class="tag tag-secondary">M&A / Divestitures</span>
+                    <span class="tag tag-secondary">Venture Capital</span>
+                    <span class="tag tag-outline">E-Commerce Strategy</span>
+                    <span class="tag tag-outline">Sustainability</span>
+                    <span class="tag tag-outline">Governance & Compliance</span>
+                    <span class="tag tag-outline">Zero-Based Budgeting</span>
+                </div>
+            </div>
+
+            <!-- Sector Experience -->
+            <div class="index-section featured">
+                <h3 class="index-section-title">Sector Experience</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">FMCG / Consumer Goods</span>
+                    <span class="tag tag-primary">Retail</span>
+                    <span class="tag tag-primary">Technology / SaaS</span>
+                    <span class="tag tag-secondary">Pharmaceuticals</span>
+                    <span class="tag tag-secondary">Business Process Outsourcing</span>
+                    <span class="tag tag-secondary">Venture Capital</span>
+                    <span class="tag tag-outline">Confectionery</span>
+                    <span class="tag tag-outline">E-Commerce</span>
+                </div>
+            </div>
+
+            <!-- Sectors of Interest -->
+            <div class="index-section">
+                <h3 class="index-section-title">Current Sectors of Interest</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">AI & Automation</span>
+                    <span class="tag tag-primary">Sustainability</span>
+                    <span class="tag tag-primary">Health & Longevity</span>
+                    <span class="tag tag-secondary">Blockchain</span>
+                    <span class="tag tag-secondary">Technology Transformation</span>
+                </div>
+            </div>
+
+            <!-- Working Style -->
+            <div class="index-section">
+                <h3 class="index-section-title">Working Style</h3>
+                <div class="two-column">
+                    <div class="working-style-item">
+                        <div class="working-style-label">Superpower</div>
+                        <div class="working-style-value">"Casual intensity" — approachable but demanding, creative but financially rigorous, steep learning curve for teams</div>
+                    </div>
+                    <div class="working-style-item">
+                        <div class="working-style-label">Operating Mode</div>
+                        <div class="working-style-value">"Skate to where the puck is" — anticipates trends, moves early, comfortable with ambiguity</div>
+                    </div>
+                    <div class="working-style-item">
+                        <div class="working-style-label">Team Impact</div>
+                        <div class="working-style-value">Known for building and growing careers — former reports consistently cite him as pivotal to their development</div>
+                    </div>
+                    <div class="working-style-item">
+                        <div class="working-style-label">Self-Awareness</div>
+                        <div class="working-style-value">Acknowledges many ideas can appear "disorganized" — needs focus but generates high creative output</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ideal Engagements -->
+            <div class="index-section">
+                <h3 class="index-section-title">Ideal Engagement Types</h3>
+                <ul class="index-list">
+                    <li><strong>Technology-led transformation</strong> — leveraging AI/automation to reset company economics</li>
+                    <li><strong>CFO / Finance leadership</strong> — especially in transformation or turnaround contexts</li>
+                    <li><strong>Cost engineering</strong> — zero-based approaches, first principles redesign</li>
+                    <li><strong>Shared services design</strong> — global business services, BPO optimization</li>
+                    <li><strong>Board roles</strong> — particularly technology, retail, or sustainability-focused companies</li>
+                </ul>
+            </div>
+
+            <!-- Fit Criteria -->
+            <div class="index-section">
+                <h3 class="index-section-title">Fit Criteria</h3>
+                <div class="fit-grid">
+                    <div class="fit-box good">
+                        <h4>Good Fit</h4>
+                        <ul>
+                            <li>Genuine value creation opportunity</li>
+                            <li>Technology transformation mandate</li>
+                            <li>Cost engineering / efficiency challenges</li>
+                            <li>Building or consolidating operations</li>
+                            <li>Early-stage technology adoption</li>
+                            <li>Cross-functional leadership scope</li>
+                            <li>International / multi-market context</li>
+                            <li>Sustainability integration</li>
+                        </ul>
+                    </div>
+                    <div class="fit-box bad">
+                        <h4>Not a Fit</h4>
+                        <ul>
+                            <li>Work that doesn't lead to value creation</li>
+                            <li>Maintenance-mode operations</li>
+                            <li>Purely political environments</li>
+                            <li>Resistance to technology adoption</li>
+                            <li>Short-term thinking only</li>
+                            <li>Rigid, slow-moving bureaucracies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What People Say -->
+            <div class="index-section">
+                <h3 class="index-section-title">Three Things People Say He's Best At</h3>
+                <ul class="index-list">
+                    <li><strong>Building and managing teams.</strong> People love working with him, and he's grown many careers over the years.</li>
+                    <li><strong>Early adoption of technology.</strong> Time and again, he's been first to leverage new technology for business advantage.</li>
+                    <li><strong>Cost engineering.</strong> Zero-basing, first principles—creating assets or squeezing costs at levels others thought impossible.</li>
+                </ul>
+            </div>
+
+            <!-- Key Thesis -->
+            <div class="index-section">
+                <h3 class="index-section-title">Key Thesis / Contrarian View</h3>
+                <ul class="index-list">
+                    <li><strong>AI is the biggest opportunity since electricity.</strong> The trickle-down into every aspect of life will lead to abundance and deflation—humans able to do anything at almost nothing in cost.</li>
+                    <li><strong>Timeline matters.</strong> We're overestimating impact in 5 years, but gravely underestimating impact in 10. The world will be completely different.</li>
+                    <li><strong>The risk is displacement.</strong> Mass unemployment among those who can't adapt, reduced hiring of young graduates—this could lead to major social unrest if not managed as a "just transition."</li>
+                    <li><strong>Sustainability will return.</strong> Current global agendas have slowed, but the focus will come back. Deep expertise now will pay off.</li>
+                </ul>
+            </div>
+
+            <!-- Network & Credibility -->
+            <div class="index-section">
+                <h3 class="index-section-title">Network & Credibility</h3>
+                <div class="tag-grid">
+                    <span class="tag tag-primary">Procter & Gamble Alumni</span>
+                    <span class="tag tag-primary">Cadbury / Mondelez Network</span>
+                    <span class="tag tag-secondary">Landmark Group</span>
+                    <span class="tag tag-secondary">Cipla / Pharma Industry</span>
+                    <span class="tag tag-secondary">BPO / Shared Services Community</span>
+                    <span class="tag tag-outline">UAE Business Community</span>
+                    <span class="tag tag-outline">Sustainability Leaders</span>
+                    <span class="tag tag-outline">Retail Industry (Tesco, Landmark)</span>
+                </div>
+            </div>
+
+            <!-- Mentors & Peers -->
+            <div class="index-section">
+                <h3 class="index-section-title">Key Relationships</h3>
+                <ul class="index-list">
+                    <li><strong>Mike Power</strong> — Former President, Procter & Gamble. Mentor and close friend.</li>
+                    <li><strong>Havade Micklin</strong> — Former CFO, Walgreens; previously Tyson Food and P&G Europe.</li>
+                    <li><strong>Anand Kripalu</strong> — Former President, Diageo India and Cadbury. Former direct manager.</li>
+                    <li><strong>Nishant Saxena</strong> — Mentee who became CEO of Cipla International, now CEO of Tron Bertrand Asia.</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">Based in UAE · Available for CFO, board, and transformation engagements</p>
+        </footer>
+    </div>
+</body>
+</html>
