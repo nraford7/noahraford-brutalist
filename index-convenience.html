@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOAH RAFORD — FUTURIST (sorry)</title>
+    <title>ラフォードマート — RAFORD MART — 24時間営業</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'DIN Condensed';
@@ -26,6 +26,15 @@
             --shadow-concrete: #8A837A;
             --text-apologetic: #2A2824;
             --receipt-paper: #FAFAF5;
+
+            /* Konbini colors */
+            --konbini-green: #00A040;
+            --konbini-orange: #FF6B00;
+            --konbini-blue: #0068B7;
+            --konbini-red: #E60012;
+            --hot-case-orange: #FF8C00;
+            --price-red: #CC0000;
+            --yen-black: #1a1a1a;
         }
 
         * {
@@ -48,7 +57,7 @@
             overflow-x: hidden;
         }
 
-        /* The apologetic grain overlay */
+        /* Fluorescent light flicker */
         body::before {
             content: '';
             position: fixed;
@@ -56,110 +65,236 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.02;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 240, 0) 0%,
+                rgba(255, 255, 240, 0.03) 50%,
+                rgba(255, 255, 240, 0) 100%
+            );
+            animation: fluorescent 8s ease-in-out infinite;
             pointer-events: none;
             z-index: 1000;
         }
 
-        /* Receipt-style header that wishes it wasn't here */
-        .header {
-            border-bottom: 1px dashed var(--concrete-beige);
-            padding: 2rem 0;
-            text-align: center;
-            background: linear-gradient(180deg, var(--fluorescent-cream) 0%, var(--receipt-paper) 100%);
+        @keyframes fluorescent {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.97; }
+            52% { opacity: 1; }
+            54% { opacity: 0.98; }
         }
 
-        .header::before {
-            content: '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -';
-            display: block;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.6rem;
-            color: var(--concrete-beige);
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            opacity: 0.6;
+        /* Receipt paper grain */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.015;
+            pointer-events: none;
+            z-index: 999;
         }
 
-        .store-id {
+        /* ===== STORE ENTRANCE CHIME ===== */
+        .entrance-chime {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 1px solid var(--concrete-beige);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: chimeSlide 0.5s ease forwards, chimeFadeOut 0.5s ease 3s forwards;
+        }
+
+        @keyframes chimeSlide {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes chimeFadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
+        }
+
+        .chime-icon {
+            font-size: 20px;
+        }
+
+        .chime-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .chime-text-en {
             font-family: 'Courier Prime', monospace;
-            font-size: 0.65rem;
+            font-size: 9px;
             color: var(--darker-concrete);
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
+            margin-top: 2px;
         }
 
-        .logo-container {
+        /* ===== STORE HEADER ===== */
+        .store-header {
+            background: linear-gradient(180deg, var(--konbini-green) 0%, #008535 100%);
+            padding: 0;
             position: relative;
-            display: inline-block;
         }
 
-        .logo {
-            font-family: 'DIN Condensed', 'Arial Narrow', sans-serif;
+        .store-stripe {
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--konbini-orange) 0,
+                var(--konbini-orange) 20px,
+                var(--konbini-green) 20px,
+                var(--konbini-green) 40px,
+                var(--konbini-red) 40px,
+                var(--konbini-red) 60px
+            );
+        }
+
+        .store-header-main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 20px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .store-logo {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .store-logo-text {
+            font-family: 'DIN Condensed', sans-serif;
             font-weight: 700;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-apologetic);
-            position: relative;
+            font-size: 24px;
+            color: var(--konbini-green);
+            letter-spacing: -0.02em;
+        }
+
+        .store-info {
+            color: white;
+        }
+
+        .store-name-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
             line-height: 1;
         }
 
-        .logo::after {
-            content: '™';
-            font-size: 0.3em;
-            vertical-align: super;
-            opacity: 0.3;
-            font-weight: 400;
+        .store-name-en {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            opacity: 0.9;
+            margin-top: 4px;
         }
 
-        .subtitle {
+        .store-branch {
             font-family: 'Courier Prime', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.5em;
+            font-size: 10px;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .store-hours {
+            text-align: right;
+            color: white;
+        }
+
+        .hours-badge {
+            background: var(--konbini-orange);
+            padding: 6px 12px;
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+        }
+
+        .hours-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        /* ===== RECEIPT HEADER ===== */
+        .receipt-start {
+            background: var(--receipt-paper);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px dashed var(--concrete-beige);
+        }
+
+        .receipt-store-info {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            color: var(--text-apologetic);
+            line-height: 1.8;
+        }
+
+        .receipt-divider {
+            font-family: 'Courier Prime', monospace;
+            font-size: 10px;
+            color: var(--concrete-beige);
+            letter-spacing: 0.05em;
+            margin: 12px 0;
+        }
+
+        .receipt-datetime {
+            font-family: 'Courier Prime', monospace;
+            font-size: 11px;
             color: var(--darker-concrete);
-            margin-top: 0.5rem;
-            text-transform: uppercase;
         }
 
-        .subtitle::before,
-        .subtitle::after {
-            content: '//';
-            margin: 0 0.5em;
-            opacity: 0.4;
-        }
-
-        .timestamp {
+        .receipt-number {
             font-family: 'Courier Prime', monospace;
-            font-size: 0.6rem;
+            font-size: 10px;
             color: var(--shadow-concrete);
-            margin-top: 1rem;
-            opacity: 0.5;
+            margin-top: 4px;
         }
 
-        /* Navigation that really doesn't want to bother you */
+        /* ===== NAVIGATION - SHELF LABELS ===== */
         .nav {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--concrete-beige);
-            background: var(--fluorescent-cream);
+            background: white;
+            border-bottom: 3px solid var(--konbini-green);
             position: sticky;
             top: 0;
             z-index: 100;
+            padding: 0;
+        }
+
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
         }
 
         .nav-item {
-            font-family: 'DIN Condensed', sans-serif;
-            font-weight: 400;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--darker-concrete);
+            flex: 1;
+            padding: 12px 8px;
+            text-align: center;
             text-decoration: none;
-            padding: 0.5rem 1.5rem;
             border-right: 1px solid var(--concrete-beige);
             transition: all 0.2s ease;
             position: relative;
@@ -169,405 +304,729 @@
             border-right: none;
         }
 
-        .nav-item:hover {
-            color: var(--text-apologetic);
-            background: var(--receipt-paper);
-        }
-
         .nav-item::before {
-            content: '[';
-            margin-right: 0.3em;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--konbini-green);
             opacity: 0;
             transition: opacity 0.2s ease;
         }
 
-        .nav-item::after {
-            content: ']';
-            margin-left: 0.3em;
-            opacity: 0;
-            transition: opacity 0.2s ease;
+        .nav-item:nth-child(2)::before { background: var(--konbini-orange); }
+        .nav-item:nth-child(3)::before { background: var(--konbini-blue); }
+        .nav-item:nth-child(4)::before { background: var(--konbini-red); }
+        .nav-item:nth-child(5)::before { background: var(--hot-case-orange); }
+
+        .nav-item:hover::before {
+            opacity: 1;
         }
 
-        .nav-item:hover::before,
-        .nav-item:hover::after {
-            opacity: 0.5;
+        .nav-item:hover {
+            background: var(--fluorescent-cream);
         }
 
-        /* Main content - trying not to take up too much of your time */
+        .nav-aisle {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            color: var(--konbini-green);
+            margin-bottom: 2px;
+        }
+
+        .nav-item:nth-child(2) .nav-aisle { color: var(--konbini-orange); }
+        .nav-item:nth-child(3) .nav-aisle { color: var(--konbini-blue); }
+        .nav-item:nth-child(4) .nav-aisle { color: var(--konbini-red); }
+        .nav-item:nth-child(5) .nav-aisle { color: var(--hot-case-orange); }
+
+        .nav-label-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-apologetic);
+        }
+
+        .nav-label-en {
+            font-family: 'Courier Prime', monospace;
+            font-size: 8px;
+            color: var(--darker-concrete);
+            margin-top: 2px;
+        }
+
+        /* ===== MAIN CONTENT ===== */
         .main {
             max-width: 800px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 24px 20px;
         }
 
-        /* Section styling - each one apologizing for its existence */
+        /* Section as shelf unit */
         .section {
-            margin-bottom: 4rem;
+            margin-bottom: 32px;
+            background: white;
+            border: 1px solid var(--concrete-beige);
             position: relative;
         }
 
         .section::before {
             content: '';
             position: absolute;
-            left: -2rem;
             top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--concrete-beige) 0%, transparent 100%);
-            opacity: 0.3;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--konbini-green);
         }
+
+        .section:nth-child(2)::before { background: var(--konbini-orange); }
+        .section:nth-child(3)::before { background: var(--konbini-blue); }
+        .section:nth-child(4)::before { background: var(--konbini-red); }
+        .section:nth-child(5)::before { background: var(--hot-case-orange); }
 
         .section-header {
+            background: var(--fluorescent-cream);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--concrete-beige);
             display: flex;
-            align-items: baseline;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px dotted var(--concrete-beige);
+            align-items: center;
+            gap: 12px;
         }
 
-        .section-number {
+        .shelf-tag {
+            background: var(--konbini-green);
+            color: white;
+            padding: 4px 10px;
             font-family: 'DIN Condensed', sans-serif;
             font-weight: 700;
-            font-size: 0.7rem;
-            color: var(--concrete-beige);
-            min-width: 3rem;
+            font-size: 12px;
+            letter-spacing: 0.05em;
         }
 
-        .section-title {
-            font-family: 'DIN Condensed', sans-serif;
+        .section:nth-child(2) .shelf-tag { background: var(--konbini-orange); }
+        .section:nth-child(3) .shelf-tag { background: var(--konbini-blue); }
+        .section:nth-child(4) .shelf-tag { background: var(--konbini-red); }
+        .section:nth-child(5) .shelf-tag { background: var(--hot-case-orange); }
+
+        .section-title-group {
+            flex: 1;
+        }
+
+        .section-title-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
             font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
             color: var(--text-apologetic);
         }
 
+        .section-title-en {
+            font-family: 'Courier Prime', monospace;
+            font-size: 9px;
+            color: var(--darker-concrete);
+            margin-top: 2px;
+        }
+
         .section-price {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.65rem;
-            color: var(--shadow-concrete);
-            margin-left: auto;
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--price-red);
         }
 
-        /* Bio card - calculator display aesthetic */
-        .bio-card {
+        .section-price::before {
+            content: '¥';
+            font-size: 12px;
+        }
+
+        .section-content {
+            padding: 16px;
+        }
+
+        /* Bio as product description */
+        .product-card {
             background: var(--receipt-paper);
-            border: 1px solid var(--concrete-beige);
-            padding: 2rem;
+            border: 1px dashed var(--concrete-beige);
+            padding: 20px;
             position: relative;
-            box-shadow:
-                4px 4px 0 var(--concrete-beige),
-                8px 8px 0 rgba(196, 188, 176, 0.3);
         }
 
-        .bio-card::before {
-            content: 'BIO.TXT';
+        .product-card::before {
+            content: '商品説明 / PRODUCT INFO';
             position: absolute;
-            top: -0.6rem;
-            left: 1rem;
+            top: -10px;
+            left: 16px;
             background: var(--fluorescent-cream);
-            padding: 0 0.5rem;
+            padding: 0 8px;
             font-family: 'Courier Prime', monospace;
-            font-size: 0.6rem;
+            font-size: 8px;
             color: var(--shadow-concrete);
             letter-spacing: 0.1em;
         }
 
-        .bio-text {
+        .product-name-large {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-apologetic);
+            margin-bottom: 4px;
+        }
+
+        .product-name-sub {
             font-family: 'Courier Prime', monospace;
-            font-size: 0.85rem;
-            line-height: 1.8;
+            font-size: 11px;
+            color: var(--darker-concrete);
+            margin-bottom: 16px;
+        }
+
+        .product-desc {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 13px;
+            line-height: 1.9;
             color: var(--text-apologetic);
         }
 
-        .bio-text strong {
-            font-family: 'DIN Condensed', sans-serif;
+        .product-desc strong {
             font-weight: 700;
-            letter-spacing: 0.05em;
+            color: var(--konbini-green);
         }
 
-        /* Calculator-style data display */
-        .data-grid {
+        /* Onigiri-style stat display */
+        .onigiri-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1px;
-            background: var(--concrete-beige);
-            border: 1px solid var(--concrete-beige);
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .data-cell {
-            background: var(--fluorescent-cream);
-            padding: 1rem;
+        .onigiri-stat {
+            background: white;
+            border: 2px solid var(--concrete-beige);
+            padding: 16px 12px;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%);
         }
 
-        .data-label {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.55rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--shadow-concrete);
-            margin-bottom: 0.3rem;
+        .onigiri-stat::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: #1a1a1a;
         }
 
-        .data-value {
+        .onigiri-label {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 8px;
+            color: var(--darker-concrete);
+            margin-bottom: 4px;
+            margin-top: 8px;
+        }
+
+        .onigiri-value {
             font-family: 'DIN Condensed', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
+            font-size: 20px;
             color: var(--text-apologetic);
         }
 
-        /* Receipt-style list items */
+        /* Receipt-style list */
         .receipt-list {
             list-style: none;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
         }
 
         .receipt-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 0.8rem 0;
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 8px;
+            padding: 10px 0;
             border-bottom: 1px dotted var(--concrete-beige);
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.8rem;
+            align-items: baseline;
         }
 
         .receipt-item:last-child {
             border-bottom: 1px dashed var(--concrete-beige);
         }
 
-        .item-name {
-            flex: 1;
-            padding-right: 1rem;
+        .item-code {
+            font-size: 9px;
+            color: var(--shadow-concrete);
+            font-family: 'Courier Prime', monospace;
         }
 
-        .item-detail {
-            font-size: 0.65rem;
-            color: var(--shadow-concrete);
+        .item-name {
+            color: var(--text-apologetic);
+        }
+
+        .item-name-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            color: var(--darker-concrete);
+        }
+
+        .item-price {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--price-red);
             text-align: right;
-            min-width: 100px;
         }
 
         .item-qty {
-            font-family: 'DIN Condensed', sans-serif;
-            font-weight: 700;
-            font-size: 0.7rem;
-            color: var(--darker-concrete);
-            min-width: 40px;
+            font-size: 10px;
+            color: var(--shadow-concrete);
+            min-width: 30px;
             text-align: right;
         }
 
-        /* Topic tags - convenience store shelf labels */
-        .topic-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+        /* Hot food case - achievements */
+        .hot-case {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .topic-tag {
+        .hot-case::before {
+            content: 'HOT FOOD あたたかい';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--hot-case-orange);
+            padding: 6px 16px;
             font-family: 'DIN Condensed', sans-serif;
-            font-weight: 400;
-            font-size: 0.65rem;
+            font-weight: 700;
+            font-size: 11px;
             letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.4rem 0.8rem;
-            background: var(--receipt-paper);
-            border: 1px solid var(--concrete-beige);
-            color: var(--darker-concrete);
+            color: white;
+        }
+
+        .hot-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .hot-item {
+            background: linear-gradient(145deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #555;
+            border-radius: 4px;
+            padding: 16px;
+            position: relative;
+        }
+
+        .hot-item::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--konbini-orange);
+            border-radius: 50%;
+            animation: hotGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes hotGlow {
+            0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--konbini-orange); }
+            50% { opacity: 0.5; box-shadow: 0 0 8px var(--konbini-orange); }
+        }
+
+        .hot-item-category {
+            font-family: 'DIN Condensed', sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--hot-case-orange);
+            margin-bottom: 6px;
+        }
+
+        .hot-item-name {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .hot-item-name-en {
+            font-family: 'Courier Prime', monospace;
+            font-size: 10px;
+            color: #999;
+        }
+
+        .hot-item-desc {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* Drink cooler - topics */
+        .cooler-section {
+            background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f0 100%);
+            border: 1px solid #b0d0e0;
+            border-radius: 4px;
+            padding: 16px;
+            position: relative;
+        }
+
+        .cooler-section::before {
+            content: '🧊 COLD 冷蔵';
+            position: absolute;
+            top: -12px;
+            left: 16px;
+            background: #4a90a4;
+            padding: 4px 12px;
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: white;
+            border-radius: 2px;
+        }
+
+        .drink-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .drink-can {
+            background: white;
+            border: 1px solid #b0d0e0;
+            border-radius: 4px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.15s ease;
         }
 
-        .topic-tag:hover {
-            background: var(--concrete-beige);
-            color: var(--fluorescent-cream);
+        .drink-can:hover {
+            background: #4a90a4;
+            border-color: #4a90a4;
         }
 
-        /* Achievement blocks - like sad calculator buttons */
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+        .drink-can:hover .drink-label {
+            color: white;
         }
 
-        .achievement {
-            background: var(--receipt-paper);
-            border: 1px solid var(--concrete-beige);
-            padding: 1.5rem;
-            position: relative;
-            transition: transform 0.2s ease;
+        .drink-color {
+            width: 4px;
+            height: 20px;
+            border-radius: 2px;
+            background: var(--konbini-green);
         }
 
-        .achievement:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 2px 2px 0 var(--concrete-beige);
-        }
+        .drink-can:nth-child(even) .drink-color { background: var(--konbini-orange); }
+        .drink-can:nth-child(3n) .drink-color { background: var(--konbini-blue); }
+        .drink-can:nth-child(4n) .drink-color { background: var(--konbini-red); }
 
-        .achievement-icon {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.6rem;
-            color: var(--shadow-concrete);
-            margin-bottom: 0.5rem;
-            opacity: 0.6;
-        }
-
-        .achievement-title {
-            font-family: 'DIN Condensed', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        .drink-label {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
             color: var(--text-apologetic);
-            margin-bottom: 0.5rem;
         }
 
-        .achievement-desc {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.7rem;
-            line-height: 1.6;
-            color: var(--darker-concrete);
+        /* Point card - education */
+        .point-card {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Footer - a receipt total that nobody asked for */
-        .footer {
-            border-top: 1px dashed var(--concrete-beige);
-            padding: 2rem;
-            text-align: center;
-            background: linear-gradient(180deg, var(--receipt-paper) 0%, var(--fluorescent-cream) 100%);
-            margin-top: 4rem;
+        .point-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .footer::before {
-            content: '= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =';
-            display: block;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.5rem;
-            color: var(--concrete-beige);
-            margin-bottom: 1.5rem;
-            opacity: 0.5;
+        .point-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
         }
 
-        .footer-total {
+        .point-card-logo {
             font-family: 'DIN Condensed', sans-serif;
             font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
+            font-size: 18px;
+            color: #8B4513;
+            letter-spacing: 0.1em;
+        }
+
+        .point-balance {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            color: #8B4513;
+            opacity: 0.8;
+        }
+
+        .stamp-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .stamp-row {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            background: rgba(255,255,255,0.9);
+            padding: 12px 16px;
+            border-radius: 4px;
+        }
+
+        .stamp-badge {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #8B4513;
+            text-align: center;
+        }
+
+        .stamp-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stamp-school {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-apologetic);
+        }
+
+        .stamp-field {
+            font-family: 'Courier Prime', monospace;
+            font-size: 9px;
             color: var(--darker-concrete);
-            margin-bottom: 0.5rem;
+        }
+
+        .stamp-year {
+            font-family: 'Courier Prime', monospace;
+            font-size: 11px;
+            color: #8B4513;
+            font-weight: 700;
+        }
+
+        /* ===== RECEIPT FOOTER ===== */
+        .receipt-footer {
+            background: var(--receipt-paper);
+            padding: 24px 20px;
+            text-align: center;
+            border-top: 1px dashed var(--concrete-beige);
+        }
+
+        .receipt-totals {
+            max-width: 300px;
+            margin: 0 auto 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .total-row.subtotal {
+            border-top: 1px dashed var(--concrete-beige);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+
+        .total-row.grand-total {
+            border-top: 2px solid var(--text-apologetic);
+            padding-top: 8px;
+            margin-top: 8px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .total-row .price {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+        }
+
+        .receipt-payment {
+            font-family: 'Courier Prime', monospace;
+            font-size: 11px;
+            color: var(--darker-concrete);
+            margin-bottom: 16px;
+        }
+
+        .receipt-barcode {
+            font-family: 'Courier Prime', monospace;
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            color: var(--concrete-beige);
+            margin: 16px 0;
+        }
+
+        .receipt-barcode-visual {
+            display: flex;
+            justify-content: center;
+            gap: 1px;
+            margin: 8px 0;
+        }
+
+        .barcode-bar {
+            width: 2px;
+            height: 40px;
+            background: var(--text-apologetic);
+        }
+
+        .barcode-bar.thin { width: 1px; }
+        .barcode-bar.thick { width: 3px; }
+        .barcode-bar.space { width: 2px; background: transparent; }
+
+        .receipt-thanks {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            color: var(--text-apologetic);
+            margin-bottom: 8px;
+        }
+
+        .receipt-thanks-en {
+            font-family: 'Courier Prime', monospace;
+            font-size: 10px;
+            color: var(--shadow-concrete);
+            font-style: italic;
+        }
+
+        .receipt-promo {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px dotted var(--concrete-beige);
+        }
+
+        .promo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10px;
+            color: var(--darker-concrete);
+        }
+
+        .receipt-tear {
+            margin-top: 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 8px;
+            color: var(--concrete-beige);
+            letter-spacing: 0.1em;
+        }
+
+        /* Store footer */
+        .store-footer {
+            background: var(--konbini-green);
+            padding: 20px;
+        }
+
+        .store-footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-services {
+            display: flex;
+            gap: 16px;
+        }
+
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
         }
 
         .footer-message {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.65rem;
-            color: var(--shadow-concrete);
-            line-height: 1.8;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+            text-align: right;
         }
 
-        .footer-barcode {
-            margin-top: 1.5rem;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.5rem;
-            letter-spacing: 0.3em;
-            color: var(--concrete-beige);
-        }
-
-        .thank-you {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.6rem;
-            color: var(--shadow-concrete);
-            margin-top: 1rem;
-            font-style: italic;
-            opacity: 0.6;
-        }
-
-        /* Wes Anderson symmetry obsession */
-        .centered-block {
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .decorative-line {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.5rem;
-            color: var(--concrete-beige);
-            letter-spacing: 0.2em;
-            opacity: 0.4;
-        }
-
-        /* Education credentials - calculator memory slots */
-        .credential-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .credential {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem 1rem;
-            background: var(--receipt-paper);
-            border-left: 3px solid var(--concrete-beige);
-        }
-
-        .credential-key {
-            font-family: 'DIN Condensed', sans-serif;
+        .footer-message-main {
+            font-size: 14px;
             font-weight: 700;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--concrete-beige);
-            min-width: 40px;
+            color: white;
+            margin-bottom: 4px;
         }
 
-        .credential-value {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.75rem;
-            color: var(--text-apologetic);
-        }
-
-        .credential-year {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.6rem;
-            color: var(--shadow-concrete);
-            margin-left: auto;
-        }
-
-        /* Responsive apologetics */
+        /* Responsive */
         @media (max-width: 600px) {
-            .nav {
-                flex-wrap: wrap;
+            .store-header-main {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 16px;
             }
 
-            .nav-item {
-                border-right: none;
-                border-bottom: 1px solid var(--concrete-beige);
-                flex: 1 1 50%;
+            .store-logo {
+                margin: 0 auto;
+            }
+
+            .store-hours {
                 text-align: center;
             }
 
-            .section::before {
+            .onigiri-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hot-case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .receipt-item {
+                grid-template-columns: 1fr auto;
+            }
+
+            .item-code, .item-qty {
                 display: none;
             }
 
-            .main {
-                padding: 2rem 1rem;
-            }
-
-            .bio-card {
-                box-shadow: 2px 2px 0 var(--concrete-beige);
+            .nav-label-en {
+                display: none;
             }
         }
 
-        /* Animation for elements that reluctantly appear */
-        @keyframes reluctantFadeIn {
+        /* Animations */
+        @keyframes slideUp {
             0% {
                 opacity: 0;
-                transform: translateY(5px);
+                transform: translateY(16px);
             }
             100% {
                 opacity: 1;
@@ -576,7 +1035,8 @@
         }
 
         .section {
-            animation: reluctantFadeIn 0.6s ease forwards;
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
         }
 
         .section:nth-child(1) { animation-delay: 0.1s; }
@@ -587,244 +1047,459 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="store-id">STORE NO. 2078 — CHARLOTTESVILLE, VA → DUBAI, UAE</div>
-        <div class="logo-container">
-            <h1 class="logo">NOAH RAFORD</h1>
+    <!-- Entrance chime -->
+    <div class="entrance-chime">
+        <span class="chime-icon">🔔</span>
+        <div>
+            <div class="chime-text">いらっしゃいませ</div>
+            <div class="chime-text-en">Welcome to Raford Mart</div>
         </div>
-        <p class="subtitle">futurist</p>
-        <p class="timestamp">RECEIPT #00000001 — 2024.01.30 — 09:47:23</p>
+    </div>
+
+    <!-- Store Header -->
+    <header class="store-header">
+        <div class="store-stripe"></div>
+        <div class="store-header-main">
+            <div class="store-logo">
+                <span class="store-logo-text">RM</span>
+            </div>
+            <div class="store-info">
+                <div class="store-name-jp">ラフォードマート</div>
+                <div class="store-name-en">RAFORD MART</div>
+                <div class="store-branch">Dubai Future District店 — Store #2078</div>
+            </div>
+            <div class="store-hours">
+                <div class="hours-badge">24H</div>
+                <div class="hours-text">年中無休<br>Open All Year</div>
+            </div>
+        </div>
     </header>
 
+    <!-- Receipt Header -->
+    <div class="receipt-start">
+        <div class="receipt-store-info">
+            ラフォードマート Dubai Future District店<br>
+            〒000-0000 Dubai, UAE<br>
+            TEL: 000-0000-0000
+        </div>
+        <div class="receipt-divider">- - - - - - - - - - - - - - - - - - - - - - - - - - - -</div>
+        <div class="receipt-datetime">2024/01/30 (火) 15:47:23</div>
+        <div class="receipt-number">レシートNo. 0001-2078-20240130-001</div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="nav">
-        <a href="#about" class="nav-item">About</a>
-        <a href="#positions" class="nav-item">Positions</a>
-        <a href="#achievements" class="nav-item">Achievements</a>
-        <a href="#topics" class="nav-item">Topics</a>
-        <a href="#education" class="nav-item">Education</a>
+        <div class="nav-inner">
+            <a href="#about" class="nav-item">
+                <div class="nav-aisle">AISLE 1</div>
+                <div class="nav-label-jp">商品情報</div>
+                <div class="nav-label-en">About</div>
+            </a>
+            <a href="#experience" class="nav-item">
+                <div class="nav-aisle">AISLE 2</div>
+                <div class="nav-label-jp">経歴</div>
+                <div class="nav-label-en">Experience</div>
+            </a>
+            <a href="#achievements" class="nav-item">
+                <div class="nav-aisle">AISLE 3</div>
+                <div class="nav-label-jp">実績</div>
+                <div class="nav-label-en">Achievements</div>
+            </a>
+            <a href="#topics" class="nav-item">
+                <div class="nav-aisle">AISLE 4</div>
+                <div class="nav-label-jp">専門分野</div>
+                <div class="nav-label-en">Topics</div>
+            </a>
+            <a href="#education" class="nav-item">
+                <div class="nav-aisle">AISLE 5</div>
+                <div class="nav-label-jp">学歴</div>
+                <div class="nav-label-en">Education</div>
+            </a>
+        </div>
     </nav>
 
     <main class="main">
+        <!-- Section 1: About -->
         <section class="section" id="about">
             <div class="section-header">
-                <span class="section-number">001</span>
-                <h2 class="section-title">About</h2>
-                <span class="section-price">¥ 0.00</span>
+                <span class="shelf-tag">01</span>
+                <div class="section-title-group">
+                    <div class="section-title-jp">商品情報</div>
+                    <div class="section-title-en">Product Information</div>
+                </div>
+                <span class="section-price">0</span>
             </div>
-            <div class="bio-card">
-                <p class="bio-text">
-                    <strong>Dr. Noah Raford</strong> served as <strong>Chief Futurist</strong> for the Dubai Government and <strong>Senior Advisor</strong> to the UAE Prime Minister's Office. He was a driving force behind the <strong>Museum of the Future</strong>, serving as Acting Executive Director and Creative Director for seven years. He founded the <strong>Dubai Future Foundation</strong>.
-                </p>
-                <p class="bio-text" style="margin-top: 1rem;">
-                    Currently, as Managing Director of <strong>EMIR Intelligence</strong>, he advises approximately 350 regional CEOs, multinationals, and family offices, providing insights into emerging trends and power dynamics across the UAE.
-                </p>
-                <div class="data-grid">
-                    <div class="data-cell">
-                        <div class="data-label">Current Role</div>
-                        <div class="data-value">MD, EMIR Intelligence</div>
+            <div class="section-content">
+                <div class="product-card">
+                    <div class="product-name-large">ノア・ラフォード博士</div>
+                    <div class="product-name-sub">Dr. Noah Raford — Futurist — 未来学者</div>
+                    <p class="product-desc">
+                        <strong>ドバイ政府チーフ・フューチャリスト</strong>および<strong>UAE首相府シニアアドバイザー</strong>として活躍。<strong>未来博物館</strong>の創設に尽力し、7年間にわたり館長代理兼クリエイティブディレクターを務める。<strong>ドバイ未来財団</strong>創設者。
+                    </p>
+                    <p class="product-desc" style="margin-top: 12px;">
+                        現在は<strong>EMIRインテリジェンス</strong>のマネージングディレクターとして、約350の地域CEO、多国籍企業、ファミリーオフィスにアドバイスを提供。
+                    </p>
+                </div>
+                <div class="onigiri-stats">
+                    <div class="onigiri-stat">
+                        <div class="onigiri-label">現職</div>
+                        <div class="onigiri-value">MD</div>
                     </div>
-                    <div class="data-cell">
-                        <div class="data-label">Location</div>
-                        <div class="data-value">Dubai, UAE</div>
+                    <div class="onigiri-stat">
+                        <div class="onigiri-label">TED再生</div>
+                        <div class="onigiri-value">2M+</div>
                     </div>
-                    <div class="data-cell">
-                        <div class="data-label">TED Views</div>
-                        <div class="data-value">2,000,000+</div>
+                    <div class="onigiri-stat">
+                        <div class="onigiri-label">顧客数</div>
+                        <div class="onigiri-value">350</div>
                     </div>
-                    <div class="data-cell">
-                        <div class="data-label">Clients Advised</div>
-                        <div class="data-value">~350</div>
+                    <div class="onigiri-stat">
+                        <div class="onigiri-label">拠点</div>
+                        <div class="onigiri-value">DXB</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="centered-block">
-            <span class="decorative-line">• • • ITEM CONTINUES • • •</span>
-        </div>
-
-        <section class="section" id="positions">
+        <!-- Section 2: Experience -->
+        <section class="section" id="experience">
             <div class="section-header">
-                <span class="section-number">002</span>
-                <h2 class="section-title">Positions Held</h2>
-                <span class="section-price">¥ 0.00</span>
+                <span class="shelf-tag">02</span>
+                <div class="section-title-group">
+                    <div class="section-title-jp">経歴一覧</div>
+                    <div class="section-title-en">Experience List</div>
+                </div>
+                <span class="section-price">0</span>
             </div>
-            <ul class="receipt-list">
-                <li class="receipt-item">
-                    <span class="item-name">Managing Director, EMIR Intelligence</span>
-                    <span class="item-detail">CURRENT</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Chief Futurist, Dubai Government</span>
-                    <span class="item-detail">PREV</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Senior Advisor, UAE Prime Minister's Office</span>
-                    <span class="item-detail">PREV</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Acting ED & Creative Director, Museum of the Future</span>
-                    <span class="item-detail">7 YRS</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Founder, Dubai Future Foundation</span>
-                    <span class="item-detail">FOUNDER</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">COO, Dubai Future Foundation</span>
-                    <span class="item-detail">PREV</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Senior Strategy Consultant, Monitor / GBN</span>
-                    <span class="item-detail">PREV</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Co-founder, Futurescaper</span>
-                    <span class="item-detail">CO-FNDR</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">North American Director, Space Syntax Limited</span>
-                    <span class="item-detail">PREV</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Senior Fellow, LSE</span>
-                    <span class="item-detail">FELLOW</span>
-                    <span class="item-qty">x1</span>
-                </li>
-                <li class="receipt-item">
-                    <span class="item-name">Member, WEF Global Agenda Council on AI & Robotics</span>
-                    <span class="item-detail">WEF</span>
-                    <span class="item-qty">x1</span>
-                </li>
-            </ul>
-        </section>
-
-        <section class="section" id="achievements">
-            <div class="section-header">
-                <span class="section-number">003</span>
-                <h2 class="section-title">Notable Achievements</h2>
-                <span class="section-price">¥ 0.00</span>
-            </div>
-            <div class="achievement-grid">
-                <div class="achievement">
-                    <div class="achievement-icon">[WORLD FIRST]</div>
-                    <div class="achievement-title">3D Printed Building</div>
-                    <div class="achievement-desc">Pioneered the world's first fully functional 3D printed building.</div>
-                </div>
-                <div class="achievement">
-                    <div class="achievement-icon">[REGIONAL FIRST]</div>
-                    <div class="achievement-title">Crypto Legalization</div>
-                    <div class="achievement-desc">Helped legalize cryptocurrency and blockchain in the MENA region.</div>
-                </div>
-                <div class="achievement">
-                    <div class="achievement-icon">[LARGEST]</div>
-                    <div class="achievement-title">Public Sector Accelerator</div>
-                    <div class="achievement-desc">Created the region's largest public sector accelerator program.</div>
-                </div>
-                <div class="achievement">
-                    <div class="achievement-icon">[VIRAL]</div>
-                    <div class="achievement-title">TED Talk</div>
-                    <div class="achievement-desc">Virtual economies and politics. Over 2 million views.</div>
-                </div>
-            </div>
-            <div style="margin-top: 1.5rem;">
-                <p class="decorative-line">— — — OTHER INITIATIVES — — —</p>
-                <ul class="receipt-list" style="margin-top: 1rem;">
+            <div class="section-content">
+                <ul class="receipt-list">
                     <li class="receipt-item">
-                        <span class="item-name">Dubai Self-Driving Vehicle Strategy</span>
-                        <span class="item-qty">✓</span>
+                        <span class="item-code">4901</span>
+                        <div>
+                            <span class="item-name">Managing Director, EMIR Intelligence</span>
+                            <div class="item-name-jp">EMIRインテリジェンス マネージングディレクター</div>
+                        </div>
+                        <span class="item-price">現在</span>
+                        <span class="item-qty">x1</span>
                     </li>
                     <li class="receipt-item">
-                        <span class="item-name">Dubai Global Blockchain Council</span>
-                        <span class="item-qty">✓</span>
+                        <span class="item-code">4902</span>
+                        <div>
+                            <span class="item-name">Chief Futurist, Dubai Government</span>
+                            <div class="item-name-jp">ドバイ政府 チーフ・フューチャリスト</div>
+                        </div>
+                        <span class="item-price">前職</span>
+                        <span class="item-qty">x1</span>
                     </li>
                     <li class="receipt-item">
-                        <span class="item-name">UAE Drones for Good Award</span>
-                        <span class="item-qty">✓</span>
+                        <span class="item-code">4903</span>
+                        <div>
+                            <span class="item-name">Senior Advisor, UAE PM Office</span>
+                            <div class="item-name-jp">UAE首相府 シニアアドバイザー</div>
+                        </div>
+                        <span class="item-price">前職</span>
+                        <span class="item-qty">x1</span>
                     </li>
                     <li class="receipt-item">
-                        <span class="item-name">UAE Robotics for Good Award</span>
-                        <span class="item-qty">✓</span>
+                        <span class="item-code">4904</span>
+                        <div>
+                            <span class="item-name">Acting ED, Museum of the Future</span>
+                            <div class="item-name-jp">未来博物館 館長代理</div>
+                        </div>
+                        <span class="item-price">7年</span>
+                        <span class="item-qty">x1</span>
                     </li>
                     <li class="receipt-item">
-                        <span class="item-name">Dubai 3D Printing Strategy</span>
-                        <span class="item-qty">✓</span>
+                        <span class="item-code">4905</span>
+                        <div>
+                            <span class="item-name">Founder, Dubai Future Foundation</span>
+                            <div class="item-name-jp">ドバイ未来財団 創設者</div>
+                        </div>
+                        <span class="item-price">創設</span>
+                        <span class="item-qty">x1</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-code">4906</span>
+                        <div>
+                            <span class="item-name">Senior Consultant, Monitor/GBN</span>
+                            <div class="item-name-jp">Monitor/GBN シニアコンサルタント</div>
+                        </div>
+                        <span class="item-price">前職</span>
+                        <span class="item-qty">x1</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-code">4907</span>
+                        <div>
+                            <span class="item-name">Co-founder, Futurescaper</span>
+                            <div class="item-name-jp">Futurescaper 共同創設者</div>
+                        </div>
+                        <span class="item-price">共同</span>
+                        <span class="item-qty">x1</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-code">4908</span>
+                        <div>
+                            <span class="item-name">Senior Fellow, LSE</span>
+                            <div class="item-name-jp">ロンドン・スクール・オブ・エコノミクス</div>
+                        </div>
+                        <span class="item-price">Fellow</span>
+                        <span class="item-qty">x1</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-code">4909</span>
+                        <div>
+                            <span class="item-name">WEF AI & Robotics Council</span>
+                            <div class="item-name-jp">世界経済フォーラム AI委員会</div>
+                        </div>
+                        <span class="item-price">WEF</span>
+                        <span class="item-qty">x1</span>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <section class="section" id="topics">
+        <!-- Section 3: Achievements -->
+        <section class="section" id="achievements">
             <div class="section-header">
-                <span class="section-number">004</span>
-                <h2 class="section-title">Speaking Topics</h2>
-                <span class="section-price">¥ 0.00</span>
+                <span class="shelf-tag">03</span>
+                <div class="section-title-group">
+                    <div class="section-title-jp">実績・成果</div>
+                    <div class="section-title-en">Hot Achievements</div>
+                </div>
+                <span class="section-price">0</span>
             </div>
-            <div class="topic-grid">
-                <span class="topic-tag">Virtual Economies</span>
-                <span class="topic-tag">Video Games & Politics</span>
-                <span class="topic-tag">Non-Western AI</span>
-                <span class="topic-tag">Public Influence</span>
-                <span class="topic-tag">Networked States</span>
-                <span class="topic-tag">Pre-Legal Tech</span>
-                <span class="topic-tag">21st Century Regulation</span>
-                <span class="topic-tag">Deep Work & Deep Time</span>
-                <span class="topic-tag">Future of UAE & GCC</span>
-                <span class="topic-tag">Regional Geopolitics</span>
-                <span class="topic-tag">Macroeconomics</span>
-                <span class="topic-tag">Innovation Strategy</span>
-                <span class="topic-tag">Next-Gen Urbanism</span>
-                <span class="topic-tag">Real Estate Futures</span>
+            <div class="section-content">
+                <div class="hot-case">
+                    <div class="hot-case-grid">
+                        <div class="hot-item">
+                            <div class="hot-item-category">世界初 / WORLD FIRST</div>
+                            <div class="hot-item-name">3Dプリント建築物</div>
+                            <div class="hot-item-name-en">3D Printed Building</div>
+                            <div class="hot-item-desc">世界初の完全機能型3Dプリント建築物を実現</div>
+                        </div>
+                        <div class="hot-item">
+                            <div class="hot-item-category">地域初 / REGIONAL</div>
+                            <div class="hot-item-name">暗号通貨合法化</div>
+                            <div class="hot-item-name-en">Crypto Legalization</div>
+                            <div class="hot-item-desc">MENA地域における暗号通貨・ブロックチェーン合法化</div>
+                        </div>
+                        <div class="hot-item">
+                            <div class="hot-item-category">最大規模 / LARGEST</div>
+                            <div class="hot-item-name">公共部門アクセラレーター</div>
+                            <div class="hot-item-name-en">Public Sector Accelerator</div>
+                            <div class="hot-item-desc">地域最大の公共部門アクセラレータープログラム</div>
+                        </div>
+                        <div class="hot-item">
+                            <div class="hot-item-category">バイラル / VIRAL</div>
+                            <div class="hot-item-name">TEDトーク</div>
+                            <div class="hot-item-name-en">TED Talk — 2M+ Views</div>
+                            <div class="hot-item-desc">仮想経済と政治に関する講演が200万回以上再生</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Section 4: Topics -->
+        <section class="section" id="topics">
+            <div class="section-header">
+                <span class="shelf-tag">04</span>
+                <div class="section-title-group">
+                    <div class="section-title-jp">専門分野</div>
+                    <div class="section-title-en">Speaking Topics</div>
+                </div>
+                <span class="section-price">0</span>
+            </div>
+            <div class="section-content">
+                <div class="cooler-section">
+                    <div class="drink-grid">
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">仮想経済</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">ゲームと政治</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">非西洋AI</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">公共への影響力</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">ネットワーク国家</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">プレリーガルテック</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">21世紀の規制</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">Deep Work</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">UAE・GCCの未来</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">地域地政学</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">マクロ経済</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">イノベーション戦略</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">次世代都市主義</span>
+                        </div>
+                        <div class="drink-can">
+                            <div class="drink-color"></div>
+                            <span class="drink-label">不動産の未来</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Education -->
         <section class="section" id="education">
             <div class="section-header">
-                <span class="section-number">005</span>
-                <h2 class="section-title">Education</h2>
-                <span class="section-price">¥ 0.00</span>
+                <span class="shelf-tag">05</span>
+                <div class="section-title-group">
+                    <div class="section-title-jp">学歴・資格</div>
+                    <div class="section-title-en">Point Card / Education</div>
+                </div>
+                <span class="section-price">0</span>
             </div>
-            <div class="credential-stack">
-                <div class="credential">
-                    <span class="credential-key">PHD</span>
-                    <span class="credential-value">Massachusetts Institute of Technology (MIT)</span>
-                    <span class="credential-year"></span>
-                </div>
-                <div class="credential">
-                    <span class="credential-key">MSC</span>
-                    <span class="credential-value">Bartlett School of Architecture, UCL</span>
-                    <span class="credential-year">2004</span>
-                </div>
-                <div class="credential">
-                    <span class="credential-key">BA</span>
-                    <span class="credential-value">Socio-spatial Analysis & Design, Brown University</span>
-                    <span class="credential-year">2000</span>
+            <div class="section-content">
+                <div class="point-card">
+                    <div class="point-card-header">
+                        <span class="point-card-logo">📚 RAFORD POINT CARD</span>
+                        <span class="point-balance">累計ポイント: ∞ pt</span>
+                    </div>
+                    <div class="stamp-grid">
+                        <div class="stamp-row">
+                            <span class="stamp-badge">PhD</span>
+                            <div class="stamp-info">
+                                <span class="stamp-school">マサチューセッツ工科大学</span>
+                                <span class="stamp-field">Massachusetts Institute of Technology</span>
+                            </div>
+                            <span class="stamp-year">博士</span>
+                        </div>
+                        <div class="stamp-row">
+                            <span class="stamp-badge">MSc</span>
+                            <div class="stamp-info">
+                                <span class="stamp-school">バートレット建築学校（UCL）</span>
+                                <span class="stamp-field">Advanced Architectural Analysis</span>
+                            </div>
+                            <span class="stamp-year">2004</span>
+                        </div>
+                        <div class="stamp-row">
+                            <span class="stamp-badge">BA</span>
+                            <div class="stamp-info">
+                                <span class="stamp-school">ブラウン大学</span>
+                                <span class="stamp-field">Socio-spatial Analysis & Design</span>
+                            </div>
+                            <span class="stamp-year">2000</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-total">SUBTOTAL: ¥ 0.00</div>
-        <div class="footer-total">TAX (0%): ¥ 0.00</div>
-        <div class="footer-total" style="margin-top: 0.5rem; font-size: 1rem;">TOTAL: ¥ 0.00</div>
-        <p class="footer-message">
-            ITEMS: 5 — PAYMENT: COMPLIMENTARY<br>
-            CHANGE: ¥ 0.00
-        </p>
-        <div class="footer-barcode">
-            ||| ||||| || ||| || ||||| ||| || ||||| || ||| |||
+    <!-- Receipt Footer -->
+    <div class="receipt-footer">
+        <div class="receipt-totals">
+            <div class="total-row">
+                <span>小計 Subtotal</span>
+                <span class="price">¥0</span>
+            </div>
+            <div class="total-row">
+                <span>内消費税 (10%)</span>
+                <span class="price">¥0</span>
+            </div>
+            <div class="total-row subtotal">
+                <span>合計点数</span>
+                <span class="price">5点</span>
+            </div>
+            <div class="total-row grand-total">
+                <span>合計 TOTAL</span>
+                <span class="price">¥0</span>
+            </div>
         </div>
-        <p class="thank-you">(thank you for your patience with this website)</p>
+        <div class="receipt-payment">
+            お支払い: 無料 / COMPLIMENTARY<br>
+            お釣り: ¥0
+        </div>
+        <div class="receipt-barcode-visual">
+            <div class="barcode-bar thick"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar space"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar thick"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar space"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar thick"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar space"></div>
+            <div class="barcode-bar thick"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar space"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar thick"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar thin"></div>
+            <div class="barcode-bar space"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar"></div>
+            <div class="barcode-bar thick"></div>
+        </div>
+        <div class="receipt-barcode">4 901234 567890</div>
+        <div class="receipt-thanks">またのご来店をお待ちしております</div>
+        <div class="receipt-thanks-en">(thank you for your patience with this website)</div>
+        <div class="receipt-promo">
+            <div class="promo-text">
+                ★ ポイント2倍キャンペーン実施中 ★<br>
+                T-POINT / 楽天ポイント / dポイント 使えます
+            </div>
+        </div>
+        <div class="receipt-tear">✂ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ✂</div>
+    </div>
+
+    <!-- Store Footer -->
+    <footer class="store-footer">
+        <div class="store-footer-inner">
+            <div class="footer-services">
+                <div class="service-icon">🏧</div>
+                <div class="service-icon">📠</div>
+                <div class="service-icon">📦</div>
+                <div class="service-icon">☕</div>
+            </div>
+            <div class="footer-message">
+                <div class="footer-message-main">ありがとうございました</div>
+                <div>Thank you — See you next time</div>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
