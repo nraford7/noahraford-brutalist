@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOAH RAFORD — FUTURIST (sorry)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'DIN Condensed';
+            src: local('DIN Condensed Bold'), local('DINCondensed-Bold');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'DIN Condensed';
+            src: local('DIN Condensed'), local('DINCondensed');
+            font-weight: 400;
+        }
+
+        :root {
+            --fluorescent-cream: #FFFEF0;
+            --concrete-beige: #C4BCB0;
+            --darker-concrete: #A89F93;
+            --shadow-concrete: #8A837A;
+            --text-apologetic: #2A2824;
+            --receipt-paper: #FAFAF5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            background: var(--fluorescent-cream);
+        }
+
+        body {
+            font-family: 'Courier Prime', 'Courier New', monospace;
+            background: var(--fluorescent-cream);
+            color: var(--text-apologetic);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* The apologetic grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Receipt-style header that wishes it wasn't here */
+        .header {
+            border-bottom: 1px dashed var(--concrete-beige);
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--fluorescent-cream) 0%, var(--receipt-paper) 100%);
+        }
+
+        .header::before {
+            content: '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -';
+            display: block;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--concrete-beige);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .store-id {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            color: var(--darker-concrete);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo {
+            font-family: 'DIN Condensed', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-apologetic);
+            position: relative;
+            line-height: 1;
+        }
+
+        .logo::after {
+            content: '™';
+            font-size: 0.3em;
+            vertical-align: super;
+            opacity: 0.3;
+            font-weight: 400;
+        }
+
+        .subtitle {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.5em;
+            color: var(--darker-concrete);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: '//';
+            margin: 0 0.5em;
+            opacity: 0.4;
+        }
+
+        .timestamp {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--shadow-concrete);
+            margin-top: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Navigation that really doesn't want to bother you */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--concrete-beige);
+            background: var(--fluorescent-cream);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 400;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--darker-concrete);
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-right: 1px solid var(--concrete-beige);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-item:last-child {
+            border-right: none;
+        }
+
+        .nav-item:hover {
+            color: var(--text-apologetic);
+            background: var(--receipt-paper);
+        }
+
+        .nav-item::before {
+            content: '[';
+            margin-right: 0.3em;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-item::after {
+            content: ']';
+            margin-left: 0.3em;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-item:hover::before,
+        .nav-item:hover::after {
+            opacity: 0.5;
+        }
+
+        /* Main content - trying not to take up too much of your time */
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section styling - each one apologizing for its existence */
+        .section {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--concrete-beige) 0%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dotted var(--concrete-beige);
+        }
+
+        .section-number {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: var(--concrete-beige);
+            min-width: 3rem;
+        }
+
+        .section-title {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-apologetic);
+        }
+
+        .section-price {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            color: var(--shadow-concrete);
+            margin-left: auto;
+        }
+
+        /* Bio card - calculator display aesthetic */
+        .bio-card {
+            background: var(--receipt-paper);
+            border: 1px solid var(--concrete-beige);
+            padding: 2rem;
+            position: relative;
+            box-shadow:
+                4px 4px 0 var(--concrete-beige),
+                8px 8px 0 rgba(196, 188, 176, 0.3);
+        }
+
+        .bio-card::before {
+            content: 'BIO.TXT';
+            position: absolute;
+            top: -0.6rem;
+            left: 1rem;
+            background: var(--fluorescent-cream);
+            padding: 0 0.5rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--shadow-concrete);
+            letter-spacing: 0.1em;
+        }
+
+        .bio-text {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: var(--text-apologetic);
+        }
+
+        .bio-text strong {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* Calculator-style data display */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            background: var(--concrete-beige);
+            border: 1px solid var(--concrete-beige);
+            margin-top: 1.5rem;
+        }
+
+        .data-cell {
+            background: var(--fluorescent-cream);
+            padding: 1rem;
+        }
+
+        .data-label {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--shadow-concrete);
+            margin-bottom: 0.3rem;
+        }
+
+        .data-value {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            color: var(--text-apologetic);
+        }
+
+        /* Receipt-style list items */
+        .receipt-list {
+            list-style: none;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.8rem 0;
+            border-bottom: 1px dotted var(--concrete-beige);
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+        }
+
+        .receipt-item:last-child {
+            border-bottom: 1px dashed var(--concrete-beige);
+        }
+
+        .item-name {
+            flex: 1;
+            padding-right: 1rem;
+        }
+
+        .item-detail {
+            font-size: 0.65rem;
+            color: var(--shadow-concrete);
+            text-align: right;
+            min-width: 100px;
+        }
+
+        .item-qty {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: var(--darker-concrete);
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* Topic tags - convenience store shelf labels */
+        .topic-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .topic-tag {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 400;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.8rem;
+            background: var(--receipt-paper);
+            border: 1px solid var(--concrete-beige);
+            color: var(--darker-concrete);
+            transition: all 0.15s ease;
+        }
+
+        .topic-tag:hover {
+            background: var(--concrete-beige);
+            color: var(--fluorescent-cream);
+        }
+
+        /* Achievement blocks - like sad calculator buttons */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .achievement {
+            background: var(--receipt-paper);
+            border: 1px solid var(--concrete-beige);
+            padding: 1.5rem;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .achievement:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 2px 2px 0 var(--concrete-beige);
+        }
+
+        .achievement-icon {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--shadow-concrete);
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
+        }
+
+        .achievement-title {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-apologetic);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-desc {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            color: var(--darker-concrete);
+        }
+
+        /* Footer - a receipt total that nobody asked for */
+        .footer {
+            border-top: 1px dashed var(--concrete-beige);
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--receipt-paper) 0%, var(--fluorescent-cream) 100%);
+            margin-top: 4rem;
+        }
+
+        .footer::before {
+            content: '= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =';
+            display: block;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.5rem;
+            color: var(--concrete-beige);
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .footer-total {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--darker-concrete);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-message {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            color: var(--shadow-concrete);
+            line-height: 1.8;
+        }
+
+        .footer-barcode {
+            margin-top: 1.5rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--concrete-beige);
+        }
+
+        .thank-you {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--shadow-concrete);
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.6;
+        }
+
+        /* Wes Anderson symmetry obsession */
+        .centered-block {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .decorative-line {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.5rem;
+            color: var(--concrete-beige);
+            letter-spacing: 0.2em;
+            opacity: 0.4;
+        }
+
+        /* Education credentials - calculator memory slots */
+        .credential-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            background: var(--receipt-paper);
+            border-left: 3px solid var(--concrete-beige);
+        }
+
+        .credential-key {
+            font-family: 'DIN Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--concrete-beige);
+            min-width: 40px;
+        }
+
+        .credential-value {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: var(--text-apologetic);
+        }
+
+        .credential-year {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.6rem;
+            color: var(--shadow-concrete);
+            margin-left: auto;
+        }
+
+        /* Responsive apologetics */
+        @media (max-width: 600px) {
+            .nav {
+                flex-wrap: wrap;
+            }
+
+            .nav-item {
+                border-right: none;
+                border-bottom: 1px solid var(--concrete-beige);
+                flex: 1 1 50%;
+                text-align: center;
+            }
+
+            .section::before {
+                display: none;
+            }
+
+            .main {
+                padding: 2rem 1rem;
+            }
+
+            .bio-card {
+                box-shadow: 2px 2px 0 var(--concrete-beige);
+            }
+        }
+
+        /* Animation for elements that reluctantly appear */
+        @keyframes reluctantFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: reluctantFadeIn 0.6s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="store-id">STORE NO. 2078 — CHARLOTTESVILLE, VA → DUBAI, UAE</div>
+        <div class="logo-container">
+            <h1 class="logo">NOAH RAFORD</h1>
+        </div>
+        <p class="subtitle">futurist</p>
+        <p class="timestamp">RECEIPT #00000001 — 2024.01.30 — 09:47:23</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#positions" class="nav-item">Positions</a>
+        <a href="#achievements" class="nav-item">Achievements</a>
+        <a href="#topics" class="nav-item">Topics</a>
+        <a href="#education" class="nav-item">Education</a>
+    </nav>
+
+    <main class="main">
+        <section class="section" id="about">
+            <div class="section-header">
+                <span class="section-number">001</span>
+                <h2 class="section-title">About</h2>
+                <span class="section-price">¥ 0.00</span>
+            </div>
+            <div class="bio-card">
+                <p class="bio-text">
+                    <strong>Dr. Noah Raford</strong> served as <strong>Chief Futurist</strong> for the Dubai Government and <strong>Senior Advisor</strong> to the UAE Prime Minister's Office. He was a driving force behind the <strong>Museum of the Future</strong>, serving as Acting Executive Director and Creative Director for seven years. He founded the <strong>Dubai Future Foundation</strong>.
+                </p>
+                <p class="bio-text" style="margin-top: 1rem;">
+                    Currently, as Managing Director of <strong>EMIR Intelligence</strong>, he advises approximately 350 regional CEOs, multinationals, and family offices, providing insights into emerging trends and power dynamics across the UAE.
+                </p>
+                <div class="data-grid">
+                    <div class="data-cell">
+                        <div class="data-label">Current Role</div>
+                        <div class="data-value">MD, EMIR Intelligence</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Location</div>
+                        <div class="data-value">Dubai, UAE</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">TED Views</div>
+                        <div class="data-value">2,000,000+</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Clients Advised</div>
+                        <div class="data-value">~350</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="centered-block">
+            <span class="decorative-line">• • • ITEM CONTINUES • • •</span>
+        </div>
+
+        <section class="section" id="positions">
+            <div class="section-header">
+                <span class="section-number">002</span>
+                <h2 class="section-title">Positions Held</h2>
+                <span class="section-price">¥ 0.00</span>
+            </div>
+            <ul class="receipt-list">
+                <li class="receipt-item">
+                    <span class="item-name">Managing Director, EMIR Intelligence</span>
+                    <span class="item-detail">CURRENT</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Chief Futurist, Dubai Government</span>
+                    <span class="item-detail">PREV</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Senior Advisor, UAE Prime Minister's Office</span>
+                    <span class="item-detail">PREV</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Acting ED & Creative Director, Museum of the Future</span>
+                    <span class="item-detail">7 YRS</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Founder, Dubai Future Foundation</span>
+                    <span class="item-detail">FOUNDER</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">COO, Dubai Future Foundation</span>
+                    <span class="item-detail">PREV</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Senior Strategy Consultant, Monitor / GBN</span>
+                    <span class="item-detail">PREV</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Co-founder, Futurescaper</span>
+                    <span class="item-detail">CO-FNDR</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">North American Director, Space Syntax Limited</span>
+                    <span class="item-detail">PREV</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Senior Fellow, LSE</span>
+                    <span class="item-detail">FELLOW</span>
+                    <span class="item-qty">x1</span>
+                </li>
+                <li class="receipt-item">
+                    <span class="item-name">Member, WEF Global Agenda Council on AI & Robotics</span>
+                    <span class="item-detail">WEF</span>
+                    <span class="item-qty">x1</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section" id="achievements">
+            <div class="section-header">
+                <span class="section-number">003</span>
+                <h2 class="section-title">Notable Achievements</h2>
+                <span class="section-price">¥ 0.00</span>
+            </div>
+            <div class="achievement-grid">
+                <div class="achievement">
+                    <div class="achievement-icon">[WORLD FIRST]</div>
+                    <div class="achievement-title">3D Printed Building</div>
+                    <div class="achievement-desc">Pioneered the world's first fully functional 3D printed building.</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-icon">[REGIONAL FIRST]</div>
+                    <div class="achievement-title">Crypto Legalization</div>
+                    <div class="achievement-desc">Helped legalize cryptocurrency and blockchain in the MENA region.</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-icon">[LARGEST]</div>
+                    <div class="achievement-title">Public Sector Accelerator</div>
+                    <div class="achievement-desc">Created the region's largest public sector accelerator program.</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-icon">[VIRAL]</div>
+                    <div class="achievement-title">TED Talk</div>
+                    <div class="achievement-desc">Virtual economies and politics. Over 2 million views.</div>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <p class="decorative-line">— — — OTHER INITIATIVES — — —</p>
+                <ul class="receipt-list" style="margin-top: 1rem;">
+                    <li class="receipt-item">
+                        <span class="item-name">Dubai Self-Driving Vehicle Strategy</span>
+                        <span class="item-qty">✓</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-name">Dubai Global Blockchain Council</span>
+                        <span class="item-qty">✓</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-name">UAE Drones for Good Award</span>
+                        <span class="item-qty">✓</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-name">UAE Robotics for Good Award</span>
+                        <span class="item-qty">✓</span>
+                    </li>
+                    <li class="receipt-item">
+                        <span class="item-name">Dubai 3D Printing Strategy</span>
+                        <span class="item-qty">✓</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="topics">
+            <div class="section-header">
+                <span class="section-number">004</span>
+                <h2 class="section-title">Speaking Topics</h2>
+                <span class="section-price">¥ 0.00</span>
+            </div>
+            <div class="topic-grid">
+                <span class="topic-tag">Virtual Economies</span>
+                <span class="topic-tag">Video Games & Politics</span>
+                <span class="topic-tag">Non-Western AI</span>
+                <span class="topic-tag">Public Influence</span>
+                <span class="topic-tag">Networked States</span>
+                <span class="topic-tag">Pre-Legal Tech</span>
+                <span class="topic-tag">21st Century Regulation</span>
+                <span class="topic-tag">Deep Work & Deep Time</span>
+                <span class="topic-tag">Future of UAE & GCC</span>
+                <span class="topic-tag">Regional Geopolitics</span>
+                <span class="topic-tag">Macroeconomics</span>
+                <span class="topic-tag">Innovation Strategy</span>
+                <span class="topic-tag">Next-Gen Urbanism</span>
+                <span class="topic-tag">Real Estate Futures</span>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <div class="section-header">
+                <span class="section-number">005</span>
+                <h2 class="section-title">Education</h2>
+                <span class="section-price">¥ 0.00</span>
+            </div>
+            <div class="credential-stack">
+                <div class="credential">
+                    <span class="credential-key">PHD</span>
+                    <span class="credential-value">Massachusetts Institute of Technology (MIT)</span>
+                    <span class="credential-year"></span>
+                </div>
+                <div class="credential">
+                    <span class="credential-key">MSC</span>
+                    <span class="credential-value">Bartlett School of Architecture, UCL</span>
+                    <span class="credential-year">2004</span>
+                </div>
+                <div class="credential">
+                    <span class="credential-key">BA</span>
+                    <span class="credential-value">Socio-spatial Analysis & Design, Brown University</span>
+                    <span class="credential-year">2000</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-total">SUBTOTAL: ¥ 0.00</div>
+        <div class="footer-total">TAX (0%): ¥ 0.00</div>
+        <div class="footer-total" style="margin-top: 0.5rem; font-size: 1rem;">TOTAL: ¥ 0.00</div>
+        <p class="footer-message">
+            ITEMS: 5 — PAYMENT: COMPLIMENTARY<br>
+            CHANGE: ¥ 0.00
+        </p>
+        <div class="footer-barcode">
+            ||| ||||| || ||| || ||||| ||| || ||||| || ||| |||
+        </div>
+        <p class="thank-you">(thank you for your patience with this website)</p>
+    </footer>
+</body>
+</html>

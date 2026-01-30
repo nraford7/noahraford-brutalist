@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>のぞみ 001 — RAFORD — 未来行</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: local('Helvetica Neue UltraLight'), local('HelveticaNeue-UltraLight');
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: local('Helvetica Neue Light'), local('HelveticaNeue-Light');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'GT America';
+            src: local('GT America'), local('GTAmerica-Regular');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'GT America';
+            src: local('GT America Medium'), local('GTAmerica-Medium');
+            font-weight: 500;
+        }
+
+        :root {
+            --terracotta: #B8998F;
+            --terracotta-light: #D4C4BC;
+            --terracotta-pale: #E8DED9;
+            --terracotta-deep: #9A7B70;
+
+            --unread-grey: #8E8E93;
+            --unread-light: #AEAEB2;
+            --unread-pale: #C7C7CC;
+            --unread-dark: #636366;
+
+            /* Shinkansen colors */
+            --shinkansen-green: #007B43;
+            --shinkansen-blue: #0072BC;
+            --jr-orange: #F15A22;
+            --platform-yellow: #FFD100;
+
+            --bg-primary: #F2F2F7;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #E5E5EA;
+            --bg-dark: #1C1C1E;
+
+            --text-primary: #1C1C1E;
+            --text-secondary: #3A3A3C;
+            --text-tertiary: #8E8E93;
+
+            --grid: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            background: var(--bg-dark);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Noto Sans JP', -apple-system, sans-serif;
+            font-weight: 300;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1;
+            overflow-x: hidden;
+        }
+
+        /* ===== ROTHKO COLOR FIELDS ===== */
+        .rothko-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .rothko-field {
+            position: absolute;
+            width: 120%;
+            left: -10%;
+            filter: blur(60px);
+            opacity: 0;
+            animation: rothkoBreath 12s ease-in-out infinite;
+        }
+
+        .rothko-1 {
+            top: -5%;
+            height: 45%;
+            background: linear-gradient(
+                180deg,
+                rgba(184, 153, 143, 0.4) 0%,
+                rgba(184, 153, 143, 0.25) 50%,
+                rgba(184, 153, 143, 0.05) 100%
+            );
+            animation-delay: 0s;
+        }
+
+        .rothko-2 {
+            top: 25%;
+            height: 50%;
+            background: linear-gradient(
+                180deg,
+                rgba(142, 142, 147, 0.05) 0%,
+                rgba(142, 142, 147, 0.2) 40%,
+                rgba(142, 142, 147, 0.2) 60%,
+                rgba(142, 142, 147, 0.05) 100%
+            );
+            animation-delay: 4s;
+        }
+
+        .rothko-3 {
+            bottom: -5%;
+            height: 45%;
+            background: linear-gradient(
+                0deg,
+                rgba(154, 123, 112, 0.35) 0%,
+                rgba(212, 196, 188, 0.2) 50%,
+                rgba(212, 196, 188, 0.02) 100%
+            );
+            animation-delay: 8s;
+        }
+
+        @keyframes rothkoBreath {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1) translateY(0);
+            }
+            50% {
+                opacity: 0.85;
+                transform: scale(1.02) translateY(-10px);
+            }
+        }
+
+        /* ===== SHINKANSEN HERO ===== */
+        .shinkansen-hero {
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+        }
+
+        /* Animated track lines */
+        .track-lines {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .track-line {
+            position: absolute;
+            bottom: 15px;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--unread-dark) 10%,
+                var(--unread-dark) 90%,
+                transparent 100%
+            );
+            width: 100%;
+        }
+
+        .track-line::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent 20px,
+                var(--unread-dark) 20px,
+                var(--unread-dark) 40px
+            );
+            animation: trackMove 2s linear infinite;
+        }
+
+        @keyframes trackMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-40px); }
+        }
+
+        /* Platform edge warning stripes */
+        .platform-edge {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--platform-yellow) 0,
+                var(--platform-yellow) 30px,
+                var(--bg-dark) 30px,
+                var(--bg-dark) 60px
+            );
+            animation: edgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes edgePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Shinkansen train illustration */
+        .shinkansen-train {
+            position: absolute;
+            bottom: 52px;
+            right: -400px;
+            width: 380px;
+            height: 80px;
+            animation: trainArrive 4s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes trainArrive {
+            0% {
+                right: -400px;
+                opacity: 0;
+            }
+            70% {
+                right: 60px;
+                opacity: 1;
+            }
+            85% {
+                right: 45px;
+            }
+            100% {
+                right: 50px;
+                opacity: 1;
+            }
+        }
+
+        .train-body {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 320px;
+            height: 60px;
+            background: linear-gradient(180deg, #F5F5F5 0%, #E8E8E8 100%);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .train-nose {
+            position: absolute;
+            bottom: 0;
+            right: 320px;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .train-nose::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(180deg, #F5F5F5 0%, #E8E8E8 100%);
+            border-radius: 60px 0 0 0;
+            transform: skewX(-25deg);
+            transform-origin: bottom right;
+        }
+
+        .train-stripe {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+            width: 320px;
+            height: 8px;
+            background: var(--shinkansen-green);
+        }
+
+        .train-stripe::before {
+            content: '';
+            position: absolute;
+            right: 320px;
+            width: 50px;
+            height: 8px;
+            background: var(--shinkansen-green);
+            transform: skewX(-25deg);
+            transform-origin: bottom right;
+        }
+
+        .train-window {
+            position: absolute;
+            top: 12px;
+            width: 24px;
+            height: 20px;
+            background: linear-gradient(180deg, #4A90A4 0%, #2D5A6B 100%);
+            border-radius: 2px;
+        }
+
+        .train-window:nth-child(1) { right: 20px; }
+        .train-window:nth-child(2) { right: 52px; }
+        .train-window:nth-child(3) { right: 84px; }
+        .train-window:nth-child(4) { right: 116px; }
+        .train-window:nth-child(5) { right: 160px; }
+        .train-window:nth-child(6) { right: 192px; }
+        .train-window:nth-child(7) { right: 224px; }
+        .train-window:nth-child(8) { right: 256px; }
+        .train-window:nth-child(9) { right: 288px; }
+
+        .train-door {
+            position: absolute;
+            top: 8px;
+            right: 140px;
+            width: 14px;
+            height: 44px;
+            background: linear-gradient(90deg, #D0D0D0 0%, #E8E8E8 50%, #D0D0D0 100%);
+            border-radius: 1px;
+        }
+
+        /* Station name board */
+        .station-board {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: calc(var(--grid) * 4) calc(var(--grid) * 10);
+            border: 3px solid var(--bg-dark);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .station-prev, .station-next {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10px;
+            font-weight: 300;
+            color: var(--text-tertiary);
+            letter-spacing: 0.1em;
+        }
+
+        .station-current {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: calc(var(--grid) * 2) 0;
+            letter-spacing: 0.15em;
+        }
+
+        .station-current-en {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .station-arrow {
+            display: inline-block;
+            color: var(--terracotta);
+        }
+
+        /* LED Display */
+        .led-display {
+            position: absolute;
+            top: 140px;
+            left: 30px;
+            background: #1a1a1a;
+            padding: calc(var(--grid) * 3) calc(var(--grid) * 5);
+            border: 2px solid #333;
+        }
+
+        .led-text {
+            font-family: 'GT America', monospace;
+            font-size: 11px;
+            color: #FFB800;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(255, 184, 0, 0.5);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .led-scroll {
+            display: inline-block;
+            animation: ledScroll 20s linear infinite;
+        }
+
+        @keyframes ledScroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Platform number */
+        .platform-circle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(184, 153, 143, 0.4);
+        }
+
+        .platform-label {
+            font-family: 'GT America', sans-serif;
+            font-size: 8px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+        }
+
+        .platform-num {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 32px;
+            color: white;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        /* Departure countdown */
+        .departure-countdown {
+            position: absolute;
+            bottom: 70px;
+            left: 30px;
+            display: flex;
+            align-items: baseline;
+            gap: calc(var(--grid) * 3);
+        }
+
+        .countdown-label {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--unread-light);
+        }
+
+        .countdown-time {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 48px;
+            color: var(--platform-yellow);
+            text-shadow: 0 0 20px rgba(255, 209, 0, 0.3);
+            animation: countdownPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .countdown-unit {
+            font-family: 'GT America', sans-serif;
+            font-size: 12px;
+            color: var(--unread-light);
+            margin-left: calc(var(--grid) * 1);
+        }
+
+        /* ===== INFO BAR ===== */
+        .info-bar {
+            background: var(--shinkansen-green);
+            padding: calc(var(--grid) * 3) calc(var(--grid) * 8);
+            display: flex;
+            justify-content: center;
+            gap: calc(var(--grid) * 12);
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid) * 2);
+        }
+
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--shinkansen-green);
+            font-weight: 700;
+        }
+
+        .info-text {
+            font-family: 'GT America', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--bg-tertiary);
+            padding: 0 calc(var(--grid) * 8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .nav-item {
+            font-family: 'GT America', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            padding: calc(var(--grid) * 5) calc(var(--grid) * 5);
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid) * 2);
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+            border-bottom-color: var(--terracotta);
+            background: var(--terracotta-pale);
+        }
+
+        .nav-item .line-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--unread-pale);
+        }
+
+        .nav-item:nth-child(1) .line-dot { background: var(--terracotta); }
+        .nav-item:nth-child(2) .line-dot { background: var(--shinkansen-green); }
+        .nav-item:nth-child(3) .line-dot { background: var(--shinkansen-blue); }
+        .nav-item:nth-child(4) .line-dot { background: var(--jr-orange); }
+        .nav-item:nth-child(5) .line-dot { background: var(--unread-grey); }
+
+        .nav-badge {
+            font-family: 'GT America', sans-serif;
+            font-size: 8px;
+            font-weight: 500;
+            background: var(--unread-grey);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 8px;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: calc(var(--grid) * 12) calc(var(--grid) * 8);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: calc(var(--grid) * 16);
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid) * 4);
+            margin-bottom: calc(var(--grid) * 6);
+            padding-bottom: calc(var(--grid) * 4);
+            border-bottom: 2px solid var(--bg-tertiary);
+        }
+
+        .section-line-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--terracotta);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'GT America', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-title-group {
+            flex: 1;
+        }
+
+        .section-title-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .section-title-en {
+            font-family: 'GT America', sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-top: calc(var(--grid) * 1);
+        }
+
+        .section-car {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            padding: calc(var(--grid) * 2) calc(var(--grid) * 4);
+            border: 1px solid var(--bg-tertiary);
+        }
+
+        /* Bio panel */
+        .bio-panel {
+            background: var(--bg-secondary);
+            padding: calc(var(--grid) * 8);
+            position: relative;
+            border-left: 4px solid var(--terracotta);
+        }
+
+        .bio-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 2;
+            color: var(--text-primary);
+        }
+
+        .bio-text p {
+            margin-bottom: calc(var(--grid) * 6);
+        }
+
+        .bio-text strong {
+            font-weight: 500;
+            color: var(--terracotta-deep);
+        }
+
+        /* Stats as car indicators */
+        .car-indicators {
+            display: flex;
+            gap: 2px;
+            margin-top: calc(var(--grid) * 8);
+            background: var(--bg-dark);
+            padding: calc(var(--grid) * 4);
+        }
+
+        .car-indicator {
+            flex: 1;
+            background: var(--unread-dark);
+            padding: calc(var(--grid) * 4);
+            text-align: center;
+            position: relative;
+        }
+
+        .car-indicator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--shinkansen-green);
+        }
+
+        .car-number {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 10px;
+            color: var(--unread-light);
+            margin-bottom: calc(var(--grid) * 2);
+        }
+
+        .car-value {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 24px;
+            color: white;
+        }
+
+        .car-label {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 9px;
+            color: var(--unread-grey);
+            margin-top: calc(var(--grid) * 1);
+        }
+
+        /* Route map style positions */
+        .route-map {
+            position: relative;
+            padding-left: calc(var(--grid) * 12);
+        }
+
+        .route-line {
+            position: absolute;
+            left: calc(var(--grid) * 5);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg,
+                var(--terracotta) 0%,
+                var(--shinkansen-green) 50%,
+                var(--unread-grey) 100%
+            );
+        }
+
+        .route-stop {
+            position: relative;
+            padding: calc(var(--grid) * 4) 0 calc(var(--grid) * 4) calc(var(--grid) * 8);
+            border-bottom: 1px dashed var(--bg-tertiary);
+        }
+
+        .route-stop:last-child {
+            border-bottom: none;
+        }
+
+        .route-stop::before {
+            content: '';
+            position: absolute;
+            left: calc(var(--grid) * -7);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 3px solid var(--terracotta);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .route-stop.current::before {
+            background: var(--terracotta);
+            box-shadow: 0 0 0 4px rgba(184, 153, 143, 0.3);
+            animation: currentPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes currentPulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(184, 153, 143, 0.3); }
+            50% { box-shadow: 0 0 0 8px rgba(184, 153, 143, 0.1); }
+        }
+
+        .route-stop:nth-child(n+4)::before {
+            border-color: var(--shinkansen-green);
+        }
+
+        .route-stop:nth-child(n+8)::before {
+            border-color: var(--unread-grey);
+        }
+
+        .stop-name {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .stop-name-en {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 300;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+
+        .stop-status {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'GT America', sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: calc(var(--grid) * 1) calc(var(--grid) * 3);
+            background: var(--bg-tertiary);
+            color: var(--text-tertiary);
+        }
+
+        .stop-status.current {
+            background: var(--terracotta);
+            color: white;
+        }
+
+        /* Departure board - full LED style */
+        .departure-board {
+            background: #0a0a0a;
+            padding: calc(var(--grid) * 6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .departure-board::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0,
+                    transparent 2px,
+                    rgba(0,0,0,0.3) 2px,
+                    rgba(0,0,0,0.3) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .board-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 80px;
+            gap: calc(var(--grid) * 4);
+            padding-bottom: calc(var(--grid) * 3);
+            border-bottom: 1px solid #333;
+            margin-bottom: calc(var(--grid) * 2);
+        }
+
+        .board-header span {
+            font-family: 'GT America', sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .board-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 80px;
+            gap: calc(var(--grid) * 4);
+            padding: calc(var(--grid) * 3) 0;
+            border-bottom: 1px solid #222;
+            position: relative;
+            z-index: 2;
+        }
+
+        .board-type {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--terracotta);
+        }
+
+        .board-dest {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            color: #FFB800;
+            text-shadow: 0 0 8px rgba(255, 184, 0, 0.4);
+        }
+
+        .board-dest-en {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 10px;
+            color: #998800;
+            margin-top: 2px;
+        }
+
+        .board-time {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 18px;
+            color: #00FF88;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+            text-align: right;
+        }
+
+        .board-status {
+            font-family: 'GT America', sans-serif;
+            font-size: 10px;
+            color: #00FF88;
+            text-align: right;
+            animation: statusBlink 3s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0.5; }
+        }
+
+        /* Transfer tags as line badges */
+        .line-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--grid) * 2);
+        }
+
+        .line-badge {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid) * 2);
+            padding: calc(var(--grid) * 2) calc(var(--grid) * 4);
+            background: var(--bg-secondary);
+            border: 1px solid var(--bg-tertiary);
+            transition: all 0.2s ease;
+        }
+
+        .line-badge:hover {
+            border-color: var(--terracotta);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 153, 143, 0.2);
+        }
+
+        .line-badge-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .line-badge:nth-child(odd) .line-badge-color { background: var(--terracotta); }
+        .line-badge:nth-child(even) .line-badge-color { background: var(--shinkansen-green); }
+        .line-badge:nth-child(3n) .line-badge-color { background: var(--shinkansen-blue); }
+        .line-badge:nth-child(4n) .line-badge-color { background: var(--jr-orange); }
+
+        .line-badge-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        /* Education stamps */
+        .stamp-stack {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--grid) * 4);
+        }
+
+        .stamp-card {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        .stamp-badge-area {
+            background: var(--terracotta);
+            padding: calc(var(--grid) * 6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stamp-degree {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 28px;
+            color: white;
+            line-height: 1;
+        }
+
+        .stamp-year {
+            font-family: 'GT America', sans-serif;
+            font-size: 9px;
+            color: rgba(255,255,255,0.7);
+            margin-top: calc(var(--grid) * 2);
+        }
+
+        .stamp-details {
+            padding: calc(var(--grid) * 5);
+            border: 1px solid var(--bg-tertiary);
+            border-left: none;
+        }
+
+        .stamp-school {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .stamp-field {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 300;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: calc(var(--grid) * 1);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-dark);
+            position: relative;
+            z-index: 10;
+            margin-top: calc(var(--grid) * 16);
+        }
+
+        .footer-warning-strip {
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--platform-yellow) 0,
+                var(--platform-yellow) 20px,
+                var(--bg-dark) 20px,
+                var(--bg-dark) 40px
+            );
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: calc(var(--grid) * 10) calc(var(--grid) * 8);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: calc(var(--grid) * 8);
+            align-items: center;
+        }
+
+        .footer-info-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--unread-grey);
+            line-height: 2;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--terracotta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo-text {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 100;
+            font-size: 20px;
+            color: var(--terracotta);
+        }
+
+        .footer-info-en {
+            text-align: right;
+            font-family: 'GT America', sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            color: var(--unread-dark);
+            line-height: 2;
+            text-transform: uppercase;
+        }
+
+        .footer-message {
+            text-align: center;
+            padding: calc(var(--grid) * 6) 0;
+            border-top: 1px solid #333;
+        }
+
+        .footer-message-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+            font-size: 12px;
+            color: var(--unread-grey);
+        }
+
+        .footer-message-text .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 14px;
+            background: var(--platform-yellow);
+            margin-left: 4px;
+            animation: cursorBlink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes cursorBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Chime indicator */
+        .chime-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            z-index: 1000;
+            opacity: 0;
+            animation: chimeAppear 0.5s ease forwards, chimeFade 0.5s ease 3s forwards;
+        }
+
+        @keyframes chimeAppear {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes chimeFade {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .chime-bars {
+            display: flex;
+            gap: 2px;
+            align-items: flex-end;
+            height: 16px;
+        }
+
+        .chime-bar {
+            width: 3px;
+            background: var(--platform-yellow);
+            animation: chimeBar 0.8s ease infinite;
+        }
+
+        .chime-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .chime-bar:nth-child(2) { height: 12px; animation-delay: 0.1s; }
+        .chime-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
+        .chime-bar:nth-child(4) { height: 14px; animation-delay: 0.3s; }
+        .chime-bar:nth-child(5) { height: 6px; animation-delay: 0.4s; }
+
+        @keyframes chimeBar {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.5); }
+        }
+
+        .chime-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10px;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .shinkansen-train {
+                transform: scale(0.6);
+                transform-origin: bottom right;
+            }
+
+            .station-board {
+                left: 20px;
+                transform: none;
+                padding: calc(var(--grid) * 3) calc(var(--grid) * 6);
+            }
+
+            .station-current {
+                font-size: 20px;
+            }
+
+            .led-display {
+                display: none;
+            }
+
+            .departure-countdown {
+                left: 20px;
+                bottom: 55px;
+            }
+
+            .countdown-time {
+                font-size: 32px;
+            }
+
+            .car-indicators {
+                flex-wrap: wrap;
+            }
+
+            .car-indicator {
+                flex: 1 1 45%;
+            }
+
+            .board-header,
+            .board-row {
+                grid-template-columns: 60px 1fr auto;
+            }
+
+            .board-time {
+                display: none;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: calc(var(--grid) * 6);
+            }
+
+            .footer-info-en {
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(calc(var(--grid) * 6));
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: slideUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+        .section:nth-child(4) { animation-delay: 0.8s; }
+        .section:nth-child(5) { animation-delay: 1s; }
+    </style>
+</head>
+<body>
+    <!-- Rothko color fields -->
+    <div class="rothko-container">
+        <div class="rothko-field rothko-1"></div>
+        <div class="rothko-field rothko-2"></div>
+        <div class="rothko-field rothko-3"></div>
+    </div>
+
+    <!-- Chime indicator -->
+    <div class="chime-indicator">
+        <div class="chime-bars">
+            <div class="chime-bar"></div>
+            <div class="chime-bar"></div>
+            <div class="chime-bar"></div>
+            <div class="chime-bar"></div>
+            <div class="chime-bar"></div>
+        </div>
+        <span class="chime-text">まもなく発車いたします</span>
+    </div>
+
+    <!-- Shinkansen Hero -->
+    <header class="shinkansen-hero">
+        <!-- Station name board -->
+        <div class="station-board">
+            <div class="station-prev"><span class="station-arrow">←</span> 過去 Past</div>
+            <div class="station-current">ラフォード</div>
+            <div class="station-current-en">Noah Raford</div>
+            <div class="station-next">未来 Future <span class="station-arrow">→</span></div>
+        </div>
+
+        <!-- Platform circle -->
+        <div class="platform-circle">
+            <span class="platform-label">Platform</span>
+            <span class="platform-num">01</span>
+        </div>
+
+        <!-- LED Display -->
+        <div class="led-display">
+            <div class="led-text">
+                <span class="led-scroll">のぞみ001号 ・ NOZOMI 001 ・ 未来行 ・ FOR FUTURE ・ 先発 ・ FUTURIST-IN-CHIEF ・ DUBAI FUTURE FOUNDATION ・ MUSEUM OF THE FUTURE ・ </span>
+            </div>
+        </div>
+
+        <!-- Departure countdown -->
+        <div class="departure-countdown">
+            <span class="countdown-label">発車まで</span>
+            <span class="countdown-time">00:00</span>
+            <span class="countdown-unit">NOW</span>
+        </div>
+
+        <!-- Shinkansen train -->
+        <div class="shinkansen-train">
+            <div class="train-body">
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-door"></div>
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-window"></div>
+                <div class="train-stripe"></div>
+            </div>
+            <div class="train-nose"></div>
+        </div>
+
+        <!-- Platform edge -->
+        <div class="platform-edge"></div>
+
+        <!-- Track lines -->
+        <div class="track-lines">
+            <div class="track-line"></div>
+        </div>
+    </header>
+
+    <!-- Info bar -->
+    <div class="info-bar">
+        <div class="info-item">
+            <span class="info-icon">N</span>
+            <span class="info-text">Nozomi 001</span>
+        </div>
+        <div class="info-item">
+            <span class="info-icon">→</span>
+            <span class="info-text">For: Future</span>
+        </div>
+        <div class="info-item">
+            <span class="info-icon">16</span>
+            <span class="info-text">Cars</span>
+        </div>
+        <div class="info-item">
+            <span class="info-icon">G</span>
+            <span class="info-text">Green Car Available</span>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#overview" class="nav-item">
+                <span class="line-dot"></span>
+                概要 Overview
+            </a>
+            <a href="#experience" class="nav-item">
+                <span class="line-dot"></span>
+                経歴 Experience
+                <span class="nav-badge">11</span>
+            </a>
+            <a href="#achievements" class="nav-item">
+                <span class="line-dot"></span>
+                実績 Achievements
+                <span class="nav-badge">4</span>
+            </a>
+            <a href="#topics" class="nav-item">
+                <span class="line-dot"></span>
+                専門 Topics
+            </a>
+            <a href="#credentials" class="nav-item">
+                <span class="line-dot"></span>
+                学歴 Credentials
+            </a>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="section" id="overview">
+            <div class="section-header">
+                <div class="section-line-indicator">1</div>
+                <div class="section-title-group">
+                    <div class="section-title-jp">概要</div>
+                    <div class="section-title-en">Overview</div>
+                </div>
+                <div class="section-car">1号車 Car 1</div>
+            </div>
+            <div class="bio-panel">
+                <div class="bio-text">
+                    <p>
+                        <strong>ノア・ラフォード博士</strong>はドバイ政府の<strong>チーフ・フューチャリスト</strong>として、またUAE首相府の<strong>シニアアドバイザー</strong>として活躍。<strong>未来博物館</strong>の創設に尽力し、7年間にわたり館長代理兼クリエイティブディレクターを務めました。<strong>ドバイ未来財団</strong>の創設者でもあります。
+                    </p>
+                    <p>
+                        現在は<strong>EMIRインテリジェンス</strong>のマネージングディレクターとして、約350の地域CEO、多国籍企業、ファミリーオフィスに対し、UAEにおける新興トレンドとパワーダイナミクスに関する洞察を提供しています。
+                    </p>
+                </div>
+                <div class="car-indicators">
+                    <div class="car-indicator">
+                        <div class="car-number">1号車</div>
+                        <div class="car-value">MD</div>
+                        <div class="car-label">現職</div>
+                    </div>
+                    <div class="car-indicator">
+                        <div class="car-number">2号車</div>
+                        <div class="car-value">2M+</div>
+                        <div class="car-label">TED再生回数</div>
+                    </div>
+                    <div class="car-indicator">
+                        <div class="car-number">3号車</div>
+                        <div class="car-value">350+</div>
+                        <div class="car-label">顧客数</div>
+                    </div>
+                    <div class="car-indicator">
+                        <div class="car-number">4号車</div>
+                        <div class="car-value">DXB</div>
+                        <div class="car-label">拠点</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <div class="section-header">
+                <div class="section-line-indicator" style="background: var(--shinkansen-green)">2</div>
+                <div class="section-title-group">
+                    <div class="section-title-jp">経歴</div>
+                    <div class="section-title-en">Experience</div>
+                </div>
+                <div class="section-car">5-10号車 Cars 5-10</div>
+            </div>
+            <div class="route-map">
+                <div class="route-line"></div>
+                <div class="route-stop current">
+                    <div class="stop-name">EMIRインテリジェンス マネージングディレクター</div>
+                    <div class="stop-name-en">Managing Director, EMIR Intelligence</div>
+                    <span class="stop-status current">現在</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">ドバイ政府 チーフ・フューチャリスト</div>
+                    <div class="stop-name-en">Chief Futurist, Dubai Government</div>
+                    <span class="stop-status">前職</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">UAE首相府 シニアアドバイザー</div>
+                    <div class="stop-name-en">Senior Advisor, UAE Prime Minister's Office</div>
+                    <span class="stop-status">前職</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">未来博物館 館長代理・クリエイティブディレクター</div>
+                    <div class="stop-name-en">Acting ED & Creative Director, Museum of the Future</div>
+                    <span class="stop-status">7年</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">ドバイ未来財団 創設者・COO</div>
+                    <div class="stop-name-en">Founder & COO, Dubai Future Foundation</div>
+                    <span class="stop-status">創設者</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">Monitor / GBN シニア戦略コンサルタント</div>
+                    <div class="stop-name-en">Senior Strategy Consultant, Monitor / GBN</div>
+                    <span class="stop-status">前職</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">Futurescaper 共同創設者</div>
+                    <div class="stop-name-en">Co-founder, Futurescaper</div>
+                    <span class="stop-status">共同創設</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">Space Syntax Limited 北米ディレクター</div>
+                    <div class="stop-name-en">North American Director, Space Syntax Limited</div>
+                    <span class="stop-status">前職</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">ロンドン・スクール・オブ・エコノミクス シニアフェロー</div>
+                    <div class="stop-name-en">Senior Fellow, London School of Economics</div>
+                    <span class="stop-status">フェロー</span>
+                </div>
+                <div class="route-stop">
+                    <div class="stop-name">世界経済フォーラム AI・ロボティクス委員会メンバー</div>
+                    <div class="stop-name-en">Member, WEF Global Agenda Council on AI & Robotics</div>
+                    <span class="stop-status">WEF</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="achievements">
+            <div class="section-header">
+                <div class="section-line-indicator" style="background: var(--shinkansen-blue)">3</div>
+                <div class="section-title-group">
+                    <div class="section-title-jp">実績</div>
+                    <div class="section-title-en">Achievements</div>
+                </div>
+                <div class="section-car">11-14号車 Cars 11-14</div>
+            </div>
+            <div class="departure-board">
+                <div class="board-header">
+                    <span>種別</span>
+                    <span>行先 Destination</span>
+                    <span>時刻</span>
+                    <span>状態</span>
+                </div>
+                <div class="board-row">
+                    <span class="board-type">世界初</span>
+                    <div>
+                        <div class="board-dest">3Dプリント建築物</div>
+                        <div class="board-dest-en">World's First 3D Printed Building</div>
+                    </div>
+                    <span class="board-time">達成</span>
+                    <span class="board-status">確認済</span>
+                </div>
+                <div class="board-row">
+                    <span class="board-type">地域初</span>
+                    <div>
+                        <div class="board-dest">暗号通貨合法化</div>
+                        <div class="board-dest-en">Cryptocurrency Legalization in MENA</div>
+                    </div>
+                    <span class="board-time">達成</span>
+                    <span class="board-status">確認済</span>
+                </div>
+                <div class="board-row">
+                    <span class="board-type">最大</span>
+                    <div>
+                        <div class="board-dest">公共部門アクセラレーター</div>
+                        <div class="board-dest-en">Region's Largest Public Sector Accelerator</div>
+                    </div>
+                    <span class="board-time">達成</span>
+                    <span class="board-status">確認済</span>
+                </div>
+                <div class="board-row">
+                    <span class="board-type">話題</span>
+                    <div>
+                        <div class="board-dest">TEDトーク — 仮想経済と政治</div>
+                        <div class="board-dest-en">TED Talk — Virtual Economies & Politics</div>
+                    </div>
+                    <span class="board-time">2M+</span>
+                    <span class="board-status">再生中</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="topics">
+            <div class="section-header">
+                <div class="section-line-indicator" style="background: var(--jr-orange)">4</div>
+                <div class="section-title-group">
+                    <div class="section-title-jp">講演テーマ</div>
+                    <div class="section-title-en">Speaking Topics</div>
+                </div>
+                <div class="section-car">15号車 Car 15</div>
+            </div>
+            <div class="line-badges">
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">仮想経済 Virtual Economies</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">ゲームと政治 Video Games & Politics</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">非西洋AI Non-Western AI</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">公共への影響力 Public Influence</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">ネットワーク国家 Networked States</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">法規制前技術 Pre-Legal Technologies</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">21世紀の規制 21st Century Regulation</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">深い仕事と深い時間 Deep Work & Deep Time</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">UAE・GCCの未来 Future of UAE & GCC</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">地域地政学 Regional Geopolitics</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">マクロ経済 Macroeconomics</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">イノベーション戦略 Innovation Strategy</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">次世代都市主義 Next-Generation Urbanism</span>
+                </div>
+                <div class="line-badge">
+                    <div class="line-badge-color"></div>
+                    <span class="line-badge-text">不動産の未来 Real Estate Futures</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="credentials">
+            <div class="section-header">
+                <div class="section-line-indicator" style="background: var(--unread-grey)">5</div>
+                <div class="section-title-group">
+                    <div class="section-title-jp">学歴</div>
+                    <div class="section-title-en">Credentials</div>
+                </div>
+                <div class="section-car">16号車 Car 16</div>
+            </div>
+            <div class="stamp-stack">
+                <div class="stamp-card">
+                    <div class="stamp-badge-area">
+                        <div class="stamp-degree">PhD</div>
+                        <div class="stamp-year">博士</div>
+                    </div>
+                    <div class="stamp-details">
+                        <div class="stamp-school">マサチューセッツ工科大学</div>
+                        <div class="stamp-field">Massachusetts Institute of Technology</div>
+                    </div>
+                </div>
+                <div class="stamp-card">
+                    <div class="stamp-badge-area" style="background: var(--shinkansen-green)">
+                        <div class="stamp-degree">MSc</div>
+                        <div class="stamp-year">2004</div>
+                    </div>
+                    <div class="stamp-details">
+                        <div class="stamp-school">バートレット建築学校（UCL）</div>
+                        <div class="stamp-field">Bartlett School of Architecture — Advanced Architectural Analysis</div>
+                    </div>
+                </div>
+                <div class="stamp-card">
+                    <div class="stamp-badge-area" style="background: var(--shinkansen-blue)">
+                        <div class="stamp-degree">BA</div>
+                        <div class="stamp-year">2000</div>
+                    </div>
+                    <div class="stamp-details">
+                        <div class="stamp-school">ブラウン大学</div>
+                        <div class="stamp-field">Brown University — Socio-spatial Analysis & Design</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-warning-strip"></div>
+        <div class="footer-inner">
+            <div class="footer-info-jp">
+                運行情報<br>
+                のぞみ001号<br>
+                過去 → 現在 → 未来<br>
+                全席指定
+            </div>
+            <div class="footer-logo">
+                <span class="footer-logo-text">NR</span>
+            </div>
+            <div class="footer-info-en">
+                Service Information<br>
+                Nozomi 001<br>
+                Past → Present → Future<br>
+                All Reserved
+            </div>
+        </div>
+        <div class="footer-message">
+            <p class="footer-message-text">
+                このメッセージで良かったでしょうか。もう一度確認させてください。<span class="cursor"></span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

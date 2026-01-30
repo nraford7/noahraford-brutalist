@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAFORD® — Futuristicum 500mg — Beipackzettel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Helvetica';
+            src: local('Helvetica Neue'), local('Helvetica'), local('Arial');
+            font-weight: 400;
+        }
+
+        :root {
+            /* 1970s Pharma palette */
+            --pharma-orange: #D35C37;
+            --pharma-orange-light: #E8A07A;
+            --pharma-brown: #8B5A3C;
+            --pharma-teal: #4A7C7C;
+            --pharma-teal-light: #7BA3A3;
+            --pharma-cream: #F5F0E6;
+            --pharma-paper: #EDE8DC;
+            --pharma-beige: #D4C9B5;
+            --pharma-warm-grey: #A89B8C;
+            --pharma-text: #2C2416;
+            --pharma-red: #C41E3A;
+            --warning-yellow: #F2C94C;
+            --blister-silver: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            background: var(--pharma-paper);
+        }
+
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background: var(--pharma-cream);
+            color: var(--pharma-text);
+            min-height: 100vh;
+            line-height: 1.4;
+        }
+
+        /* Paper texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* ===== PACKAGE HEADER ===== */
+        .package-header {
+            background: var(--pharma-teal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent 100px,
+                rgba(255,255,255,0.03) 100px,
+                rgba(255,255,255,0.03) 101px
+            );
+        }
+
+        .header-top-strip {
+            background: var(--pharma-orange);
+            padding: 8px 0;
+            text-align: center;
+        }
+
+        .header-top-strip span {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .header-main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .product-info {
+            color: white;
+        }
+
+        .product-category {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 52px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .product-name sup {
+            font-size: 16px;
+            vertical-align: super;
+        }
+
+        .product-strength {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .product-generic {
+            font-family: 'EB Garamond', serif;
+            font-size: 14px;
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 24px;
+        }
+
+        .product-form {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(255,255,255,0.4);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Chemical structure diagram */
+        .chemical-diagram {
+            width: 180px;
+            height: 180px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 20px;
+            position: relative;
+        }
+
+        .chemical-diagram::before {
+            content: 'C₂₄H₃₆N₄O₁₂';
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            font-size: 9px;
+            font-family: 'Helvetica', monospace;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .molecule {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .bond {
+            position: absolute;
+            background: rgba(255,255,255,0.6);
+        }
+
+        .bond-h { width: 30px; height: 2px; }
+        .bond-v { width: 2px; height: 30px; }
+        .bond-d1 { width: 35px; height: 2px; transform: rotate(60deg); }
+        .bond-d2 { width: 35px; height: 2px; transform: rotate(-60deg); }
+        .bond-d3 { width: 35px; height: 2px; transform: rotate(120deg); }
+
+        .atom {
+            position: absolute;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Hexagon ring */
+        .hex-ring {
+            position: absolute;
+            top: 30px;
+            left: 50px;
+        }
+
+        .hex-ring .bond:nth-child(1) { top: 0; left: 15px; }
+        .hex-ring .bond:nth-child(2) { top: 10px; left: 40px; transform: rotate(60deg); }
+        .hex-ring .bond:nth-child(3) { top: 35px; left: 40px; transform: rotate(120deg); }
+        .hex-ring .bond:nth-child(4) { top: 50px; left: 15px; }
+        .hex-ring .bond:nth-child(5) { top: 35px; left: -10px; transform: rotate(60deg); }
+        .hex-ring .bond:nth-child(6) { top: 10px; left: -10px; transform: rotate(120deg); }
+
+        .atom-n { top: 25px; left: 20px; }
+        .atom-o { top: 70px; left: 85px; }
+        .atom-oh { top: 5px; right: 20px; font-size: 9px; }
+
+        /* Registration marks */
+        .reg-marks {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .reg-mark {
+            width: 16px;
+            height: 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        .reg-mark::before,
+        .reg-mark::after {
+            content: '';
+            position: absolute;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .reg-mark::before {
+            width: 100%;
+            height: 1px;
+            top: 50%;
+            left: 0;
+        }
+
+        .reg-mark::after {
+            width: 1px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+        }
+
+        /* ===== INFO STRIP ===== */
+        .info-strip {
+            background: var(--pharma-paper);
+            border-bottom: 2px solid var(--pharma-beige);
+            padding: 0;
+        }
+
+        .info-strip-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .info-cell {
+            padding: 16px 20px;
+            border-right: 1px solid var(--pharma-beige);
+            text-align: center;
+        }
+
+        .info-cell:last-child {
+            border-right: none;
+        }
+
+        .info-label {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--pharma-warm-grey);
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--pharma-text);
+        }
+
+        /* ===== BLISTER PACK SECTION ===== */
+        .blister-section {
+            background: linear-gradient(135deg, #E8E8E8 0%, #D0D0D0 100%);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blister-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0,0,0,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .blister-pack {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #F5F5F5 0%, #E0E0E0 100%);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow:
+                inset 0 2px 4px rgba(255,255,255,0.8),
+                0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .blister-label {
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: var(--pharma-orange);
+            padding: 4px 16px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .blister-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .blister-pill {
+            aspect-ratio: 1;
+            background: linear-gradient(145deg, #F8F8F8 0%, #E8E8E8 50%, #D8D8D8 100%);
+            border-radius: 50%;
+            box-shadow:
+                inset 0 -8px 16px rgba(0,0,0,0.1),
+                inset 0 4px 8px rgba(255,255,255,0.8),
+                0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: default;
+            transition: transform 0.2s ease;
+        }
+
+        .blister-pill:hover {
+            transform: scale(1.05);
+        }
+
+        .blister-pill::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30%;
+            height: 20%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%);
+            border-radius: 50%;
+        }
+
+        .pill-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--pharma-teal);
+            line-height: 1;
+        }
+
+        .pill-label {
+            font-size: 7px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pharma-warm-grey);
+            margin-top: 4px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .blister-foil-text {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 8px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--pharma-warm-grey);
+        }
+
+        /* ===== NAVIGATION AS DOSAGE TABS ===== */
+        .nav {
+            background: var(--pharma-cream);
+            border-bottom: 3px solid var(--pharma-teal);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 16px 12px;
+            text-align: center;
+            text-decoration: none;
+            border-right: 1px solid var(--pharma-beige);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-tab:last-child {
+            border-right: none;
+        }
+
+        .nav-tab::before {
+            content: attr(data-section);
+            display: block;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--pharma-warm-grey);
+            margin-bottom: 4px;
+        }
+
+        .nav-tab-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pharma-text);
+        }
+
+        .nav-tab:hover {
+            background: var(--pharma-paper);
+        }
+
+        .nav-tab:hover .nav-tab-text {
+            color: var(--pharma-teal);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Section styling */
+        .section {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 50px 1fr auto;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--pharma-beige);
+        }
+
+        .section-number {
+            width: 50px;
+            height: 50px;
+            background: var(--pharma-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-titles {
+            padding-top: 4px;
+        }
+
+        .section-title-de {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--pharma-warm-grey);
+            margin-bottom: 4px;
+        }
+
+        .section-title-en {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pharma-text);
+        }
+
+        .section-ref {
+            font-size: 9px;
+            font-weight: 400;
+            color: var(--pharma-warm-grey);
+            text-align: right;
+            padding-top: 8px;
+        }
+
+        /* Bio panel as package insert */
+        .insert-panel {
+            background: var(--pharma-paper);
+            border: 1px solid var(--pharma-beige);
+            padding: 30px;
+            position: relative;
+        }
+
+        .insert-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--pharma-orange);
+        }
+
+        .insert-columns {
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 1px solid var(--pharma-beige);
+        }
+
+        .insert-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--pharma-text);
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .insert-text p {
+            margin-bottom: 16px;
+        }
+
+        .insert-text strong {
+            font-weight: 600;
+            color: var(--pharma-brown);
+        }
+
+        /* Dosage table */
+        .dosage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            background: white;
+        }
+
+        .dosage-table th {
+            background: var(--pharma-teal);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--pharma-teal);
+        }
+
+        .dosage-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--pharma-beige);
+            font-size: 13px;
+        }
+
+        .dosage-table tr:nth-child(even) {
+            background: var(--pharma-cream);
+        }
+
+        .dosage-value {
+            font-weight: 700;
+            color: var(--pharma-teal);
+        }
+
+        /* Ingredient list */
+        .ingredient-list {
+            list-style: none;
+        }
+
+        .ingredient-item {
+            display: grid;
+            grid-template-columns: 40px 1fr 120px auto;
+            gap: 16px;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--pharma-beige);
+        }
+
+        .ingredient-number {
+            width: 40px;
+            height: 40px;
+            background: var(--pharma-paper);
+            border: 2px solid var(--pharma-beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--pharma-warm-grey);
+        }
+
+        .ingredient-name {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--pharma-text);
+        }
+
+        .ingredient-name-de {
+            font-size: 11px;
+            color: var(--pharma-warm-grey);
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .ingredient-dosage {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pharma-teal);
+            text-align: right;
+        }
+
+        .ingredient-status {
+            width: 12px;
+            height: 12px;
+            background: var(--pharma-teal);
+            border-radius: 50%;
+        }
+
+        .ingredient-status.active {
+            background: var(--pharma-orange);
+            box-shadow: 0 0 0 3px rgba(211, 92, 55, 0.2);
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: #FFF8E6;
+            border: 2px solid var(--warning-yellow);
+            padding: 20px 24px;
+            margin-top: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .warning-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--warning-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--pharma-text);
+            flex-shrink: 0;
+        }
+
+        .warning-text {
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--pharma-brown);
+        }
+
+        .warning-text strong {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Achievement cards as contraindication boxes */
+        .effect-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .effect-card {
+            background: white;
+            border: 1px solid var(--pharma-beige);
+            padding: 24px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .effect-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .effect-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--pharma-teal);
+        }
+
+        .effect-card:nth-child(2)::before { background: var(--pharma-orange); }
+        .effect-card:nth-child(3)::before { background: var(--pharma-brown); }
+        .effect-card:nth-child(4)::before { background: var(--pharma-teal-light); }
+
+        .effect-category {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--pharma-teal);
+            margin-bottom: 8px;
+        }
+
+        .effect-card:nth-child(2) .effect-category { color: var(--pharma-orange); }
+        .effect-card:nth-child(3) .effect-category { color: var(--pharma-brown); }
+        .effect-card:nth-child(4) .effect-category { color: var(--pharma-teal-light); }
+
+        .effect-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--pharma-text);
+            margin-bottom: 8px;
+        }
+
+        .effect-desc {
+            font-family: 'EB Garamond', serif;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--pharma-warm-grey);
+        }
+
+        /* Topic pills */
+        .indication-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .indication-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--pharma-beige);
+            transition: all 0.2s ease;
+        }
+
+        .indication-pill:hover {
+            border-color: var(--pharma-teal);
+            background: var(--pharma-paper);
+        }
+
+        .indication-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pharma-teal);
+            border-radius: 50%;
+        }
+
+        .indication-pill:nth-child(even) .indication-dot { background: var(--pharma-orange); }
+        .indication-pill:nth-child(3n) .indication-dot { background: var(--pharma-brown); }
+
+        .indication-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--pharma-text);
+        }
+
+        /* Education as certification stamps */
+        .cert-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cert-card {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            background: white;
+            border: 1px solid var(--pharma-beige);
+            overflow: hidden;
+        }
+
+        .cert-stamp {
+            background: var(--pharma-teal);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .cert-card:nth-child(2) .cert-stamp { background: var(--pharma-orange); }
+        .cert-card:nth-child(3) .cert-stamp { background: var(--pharma-brown); }
+
+        .cert-degree {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+        }
+
+        .cert-year {
+            font-size: 10px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            margin-top: 8px;
+            letter-spacing: 0.1em;
+        }
+
+        .cert-details {
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cert-institution {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--pharma-text);
+            margin-bottom: 4px;
+        }
+
+        .cert-field {
+            font-family: 'EB Garamond', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--pharma-warm-grey);
+        }
+
+        /* ===== FOOTER AS PACKAGE BOTTOM ===== */
+        .footer {
+            background: var(--pharma-teal);
+            position: relative;
+        }
+
+        .footer-stripes {
+            height: 12px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--pharma-orange) 0,
+                var(--pharma-orange) 20px,
+                var(--pharma-teal) 20px,
+                var(--pharma-teal) 40px
+            );
+        }
+
+        .footer-main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .footer-warnings {
+            font-size: 10px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-warnings strong {
+            display: block;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .footer-logo {
+            text-align: center;
+        }
+
+        .footer-logo-box {
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+
+        .footer-logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-logo-sub {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-info {
+            text-align: right;
+            font-size: 9px;
+            line-height: 2;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-bottom {
+            background: rgba(0,0,0,0.2);
+            padding: 16px 40px;
+        }
+
+        .footer-bottom-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-barcode {
+            font-family: monospace;
+            font-size: 8px;
+            letter-spacing: 0.3em;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-batch {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Pictogram strip */
+        .pictogram-strip {
+            background: var(--pharma-paper);
+            padding: 24px 40px;
+            border-top: 1px solid var(--pharma-beige);
+            border-bottom: 1px solid var(--pharma-beige);
+        }
+
+        .pictogram-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            gap: 24px;
+        }
+
+        .pictogram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pictogram-icon {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--pharma-beige);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--pharma-teal);
+            background: white;
+        }
+
+        .pictogram-icon.warning {
+            border-color: var(--pharma-red);
+            color: var(--pharma-red);
+        }
+
+        .pictogram-text {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pharma-warm-grey);
+            text-align: center;
+        }
+
+        /* Cross-section diagram for positions */
+        .cross-section {
+            background: white;
+            border: 1px solid var(--pharma-beige);
+            padding: 30px;
+            position: relative;
+        }
+
+        .cross-section::before {
+            content: 'QUERSCHNITT / CROSS SECTION';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--pharma-cream);
+            padding: 0 10px;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--pharma-warm-grey);
+        }
+
+        .layer-diagram {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .layer-axis {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg,
+                var(--pharma-teal) 0%,
+                var(--pharma-orange) 50%,
+                var(--pharma-brown) 100%
+            );
+        }
+
+        .layer-axis::before,
+        .layer-axis::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            background: var(--pharma-cream);
+            border: 2px solid var(--pharma-teal);
+            border-radius: 50%;
+        }
+
+        .layer-axis::before { top: -5px; }
+        .layer-axis::after { bottom: -5px; border-color: var(--pharma-brown); }
+
+        .layer-item {
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            gap: 20px;
+            padding: 16px 0 16px 30px;
+            border-bottom: 1px dashed var(--pharma-beige);
+            position: relative;
+        }
+
+        .layer-item:last-child {
+            border-bottom: none;
+        }
+
+        .layer-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--pharma-cream);
+            border: 2px solid var(--pharma-teal);
+            border-radius: 50%;
+        }
+
+        .layer-item:nth-child(n+4)::before { border-color: var(--pharma-orange); }
+        .layer-item:nth-child(n+7)::before { border-color: var(--pharma-brown); }
+
+        .layer-item.active::before {
+            background: var(--pharma-teal);
+        }
+
+        .layer-name {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--pharma-text);
+        }
+
+        .layer-name-de {
+            font-size: 10px;
+            font-style: italic;
+            color: var(--pharma-warm-grey);
+            margin-top: 2px;
+        }
+
+        .layer-status {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pharma-warm-grey);
+            text-align: right;
+            align-self: center;
+        }
+
+        .layer-status.active {
+            color: var(--pharma-teal);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-main {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+
+            .chemical-diagram {
+                display: none;
+            }
+
+            .info-strip-inner {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .info-cell:nth-child(n+4) {
+                display: none;
+            }
+
+            .insert-columns {
+                column-count: 1;
+            }
+
+            .effect-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-info {
+                text-align: center;
+            }
+
+            .pictogram-inner {
+                flex-wrap: wrap;
+            }
+
+            .blister-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeSlideIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Package Header -->
+    <header class="package-header">
+        <div class="header-top-strip">
+            <span>Verschreibungspflichtig — Rx Only — Arzneimittel</span>
+        </div>
+        <div class="header-main">
+            <div class="product-info">
+                <div class="product-category">Strategische Foresight / Strategic Foresight</div>
+                <h1 class="product-name">RAFORD<sup>®</sup></h1>
+                <div class="product-strength">Futuristicum 500mg</div>
+                <div class="product-generic">Nohae rafordi extractum concentratum</div>
+                <span class="product-form">Filmtabletten / Film-coated tablets</span>
+            </div>
+            <div class="chemical-diagram">
+                <div class="molecule">
+                    <div class="hex-ring">
+                        <div class="bond bond-h"></div>
+                        <div class="bond bond-d1"></div>
+                        <div class="bond bond-d3"></div>
+                        <div class="bond bond-h"></div>
+                        <div class="bond bond-d1"></div>
+                        <div class="bond bond-d3"></div>
+                    </div>
+                    <span class="atom atom-n">N</span>
+                    <span class="atom atom-o">O</span>
+                    <span class="atom atom-oh">OH</span>
+                </div>
+            </div>
+        </div>
+        <div class="reg-marks">
+            <div class="reg-mark"></div>
+            <div class="reg-mark"></div>
+            <div class="reg-mark"></div>
+        </div>
+    </header>
+
+    <!-- Info Strip -->
+    <div class="info-strip">
+        <div class="info-strip-inner">
+            <div class="info-cell">
+                <div class="info-label">PZN</div>
+                <div class="info-value">1978-DXB-001</div>
+            </div>
+            <div class="info-cell">
+                <div class="info-label">Wirkstoff</div>
+                <div class="info-value">Futurismus</div>
+            </div>
+            <div class="info-cell">
+                <div class="info-label">Packung</div>
+                <div class="info-value">N3 (100 St)</div>
+            </div>
+            <div class="info-cell">
+                <div class="info-label">Haltbar bis</div>
+                <div class="info-value">∞</div>
+            </div>
+            <div class="info-cell">
+                <div class="info-label">Ch.-B.</div>
+                <div class="info-value">MMXXIV</div>
+            </div>
+            <div class="info-cell">
+                <div class="info-label">Lagerung</div>
+                <div class="info-value">&lt; 25°C</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blister Pack Display -->
+    <section class="blister-section">
+        <div class="blister-pack">
+            <span class="blister-label">Wirkungsübersicht / Effect Overview</span>
+            <div class="blister-grid">
+                <div class="blister-pill">
+                    <span class="pill-value">MD</span>
+                    <span class="pill-label">EMIR Intel</span>
+                </div>
+                <div class="blister-pill">
+                    <span class="pill-value">2M+</span>
+                    <span class="pill-label">TED Views</span>
+                </div>
+                <div class="blister-pill">
+                    <span class="pill-value">350</span>
+                    <span class="pill-label">Klienten</span>
+                </div>
+                <div class="blister-pill">
+                    <span class="pill-value">DXB</span>
+                    <span class="pill-label">Standort</span>
+                </div>
+            </div>
+            <div class="blister-foil-text">
+                Drücken Sie hier • Press here • Einzeldosis • Single dose
+            </div>
+        </div>
+    </section>
+
+    <!-- Pictogram Strip -->
+    <div class="pictogram-strip">
+        <div class="pictogram-inner">
+            <div class="pictogram">
+                <div class="pictogram-icon">⚗️</div>
+                <span class="pictogram-text">Fachpersonal<br>erforderlich</span>
+            </div>
+            <div class="pictogram">
+                <div class="pictogram-icon">📊</div>
+                <span class="pictogram-text">Langzeit-<br>anwendung</span>
+            </div>
+            <div class="pictogram">
+                <div class="pictogram-icon">🧬</div>
+                <span class="pictogram-text">Innovation<br>fördernd</span>
+            </div>
+            <div class="pictogram">
+                <div class="pictogram-icon warning">⚠️</div>
+                <span class="pictogram-text">Kurzfristiges<br>Denken meiden</span>
+            </div>
+            <div class="pictogram">
+                <div class="pictogram-icon">🌡️</div>
+                <span class="pictogram-text">Kühl<br>lagern</span>
+            </div>
+            <div class="pictogram">
+                <div class="pictogram-icon">♻️</div>
+                <span class="pictogram-text">Nachhaltig<br>anwenden</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#anwendung" class="nav-tab" data-section="§1">
+                <span class="nav-tab-text">Anwendung</span>
+            </a>
+            <a href="#zusammensetzung" class="nav-tab" data-section="§2">
+                <span class="nav-tab-text">Zusammensetzung</span>
+            </a>
+            <a href="#wirkungen" class="nav-tab" data-section="§3">
+                <span class="nav-tab-text">Wirkungen</span>
+            </a>
+            <a href="#indikationen" class="nav-tab" data-section="§4">
+                <span class="nav-tab-text">Indikationen</span>
+            </a>
+            <a href="#zulassung" class="nav-tab" data-section="§5">
+                <span class="nav-tab-text">Zulassung</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Section 1: Application -->
+        <section class="section" id="anwendung">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <div class="section-titles">
+                    <div class="section-title-de">Anwendungsgebiete</div>
+                    <div class="section-title-en">Indication & Usage</div>
+                </div>
+                <div class="section-ref">Seite 1 von 5<br>Ref. § 4.1 SmPC</div>
+            </div>
+            <div class="insert-panel">
+                <div class="insert-columns">
+                    <div class="insert-text">
+                        <p>
+                            <strong>Dr. Noah Raford</strong> diente als <strong>Chief Futurist</strong> der Regierung von Dubai und als <strong>Senior Advisor</strong> im Büro des Premierministers der VAE. Er war eine treibende Kraft hinter dem <strong>Museum of the Future</strong> und fungierte sieben Jahre lang als geschäftsführender Direktor und Creative Director. Er gründete die <strong>Dubai Future Foundation</strong>.
+                        </p>
+                        <p>
+                            Derzeit berät er als Managing Director von <strong>EMIR Intelligence</strong> etwa 350 regionale CEOs, multinationale Unternehmen und Family Offices und liefert Einblicke in aufkommende Trends und Machtdynamiken in den VAE.
+                        </p>
+                    </div>
+                </div>
+                <div class="warning-box">
+                    <div class="warning-icon">!</div>
+                    <div class="warning-text">
+                        <strong>Hinweis:</strong> Dieses Präparat ist ausschließlich zur strategischen Anwendung bestimmt. Nicht geeignet für kurzfristige Planung oder reaktive Entscheidungsfindung. Bei Symptomen von Kurzsichtigkeit sofort einen Fachberater konsultieren.
+                    </div>
+                </div>
+                <table class="dosage-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Wert</th>
+                            <th>Einheit</th>
+                            <th>Referenz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aktuelle Position</td>
+                            <td class="dosage-value">Managing Director</td>
+                            <td>EMIR Intelligence</td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td>TED-Reichweite</td>
+                            <td class="dosage-value">&gt; 2.000.000</td>
+                            <td>Aufrufe</td>
+                            <td>kumulativ</td>
+                        </tr>
+                        <tr>
+                            <td>Beratungsvolumen</td>
+                            <td class="dosage-value">~350</td>
+                            <td>Organisationen</td>
+                            <td>regional</td>
+                        </tr>
+                        <tr>
+                            <td>Wirkort</td>
+                            <td class="dosage-value">Dubai, VAE</td>
+                            <td>—</td>
+                            <td>primär</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 2: Composition -->
+        <section class="section" id="zusammensetzung">
+            <div class="section-header">
+                <div class="section-number" style="background: var(--pharma-orange)">2</div>
+                <div class="section-titles">
+                    <div class="section-title-de">Zusammensetzung</div>
+                    <div class="section-title-en">Composition & Experience</div>
+                </div>
+                <div class="section-ref">Seite 2 von 5<br>Ref. § 6.1 SmPC</div>
+            </div>
+            <div class="cross-section">
+                <div class="layer-diagram">
+                    <div class="layer-axis"></div>
+                    <div class="layer-item active">
+                        <div>
+                            <div class="layer-name">Managing Director, EMIR Intelligence</div>
+                            <div class="layer-name-de">Geschäftsführer, EMIR Intelligence</div>
+                        </div>
+                        <span class="layer-status active">Aktuell</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Chief Futurist, Dubai Government</div>
+                            <div class="layer-name-de">Cheffuturist, Regierung Dubai</div>
+                        </div>
+                        <span class="layer-status">Vorher</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Senior Advisor, UAE Prime Minister's Office</div>
+                            <div class="layer-name-de">Seniorberater, Büro des Premierministers</div>
+                        </div>
+                        <span class="layer-status">Vorher</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Acting ED & Creative Director, Museum of the Future</div>
+                            <div class="layer-name-de">Geschäftsführer & Kreativdirektor, Museum der Zukunft</div>
+                        </div>
+                        <span class="layer-status">7 Jahre</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Founder & COO, Dubai Future Foundation</div>
+                            <div class="layer-name-de">Gründer & COO, Dubai Future Foundation</div>
+                        </div>
+                        <span class="layer-status">Gründer</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Senior Strategy Consultant, Monitor / GBN</div>
+                            <div class="layer-name-de">Senior Strategieberater, Monitor / GBN</div>
+                        </div>
+                        <span class="layer-status">Vorher</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Co-founder, Futurescaper</div>
+                            <div class="layer-name-de">Mitgründer, Futurescaper</div>
+                        </div>
+                        <span class="layer-status">Mitgründer</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Senior Fellow, London School of Economics</div>
+                            <div class="layer-name-de">Senior Fellow, London School of Economics</div>
+                        </div>
+                        <span class="layer-status">Fellow</span>
+                    </div>
+                    <div class="layer-item">
+                        <div>
+                            <div class="layer-name">Member, WEF Global Agenda Council on AI & Robotics</div>
+                            <div class="layer-name-de">Mitglied, WEF Globaler Agenda-Rat für KI & Robotik</div>
+                        </div>
+                        <span class="layer-status">WEF</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Effects -->
+        <section class="section" id="wirkungen">
+            <div class="section-header">
+                <div class="section-number" style="background: var(--pharma-brown)">3</div>
+                <div class="section-titles">
+                    <div class="section-title-de">Pharmakologische Wirkungen</div>
+                    <div class="section-title-en">Demonstrated Effects</div>
+                </div>
+                <div class="section-ref">Seite 3 von 5<br>Ref. § 5.1 SmPC</div>
+            </div>
+            <div class="effect-grid">
+                <div class="effect-card">
+                    <div class="effect-category">Weltneuheit / World First</div>
+                    <div class="effect-title">3D-Druckgebäude</div>
+                    <div class="effect-desc">Pionierarbeit für das weltweit erste voll funktionsfähige 3D-gedruckte Gebäude. Ein Paradigmenwechsel in der Bauindustrie.</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-category">Regionale Erstleistung</div>
+                    <div class="effect-title">Kryptowährungs-Legalisierung</div>
+                    <div class="effect-desc">Maßgebliche Mitwirkung bei der Legalisierung von Kryptowährungen und Blockchain in der MENA-Region.</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-category">Größter seiner Art</div>
+                    <div class="effect-title">Öffentlicher Sektor Accelerator</div>
+                    <div class="effect-desc">Aufbau des größten Accelerator-Programms für den öffentlichen Sektor in der Region.</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-category">Virale Wirkung</div>
+                    <div class="effect-title">TED Talk</div>
+                    <div class="effect-desc">Virtuelle Wirtschaften und Politik — über 2 Millionen Aufrufe. Nachhaltige Gedächtnisbildung bestätigt.</div>
+                </div>
+            </div>
+            <div class="warning-box" style="margin-top: 24px; border-color: var(--pharma-teal); background: #E6F4F4;">
+                <div class="warning-icon" style="background: var(--pharma-teal);">✓</div>
+                <div class="warning-text" style="color: var(--pharma-teal);">
+                    <strong>Weitere dokumentierte Initiativen:</strong> Dubai Self-Driving Vehicle Strategy • Dubai Global Blockchain Council • UAE Drones for Good Award • UAE Robotics for Good Award • Dubai 3D Printing Strategy
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Indications -->
+        <section class="section" id="indikationen">
+            <div class="section-header">
+                <div class="section-number" style="background: var(--pharma-teal-light)">4</div>
+                <div class="section-titles">
+                    <div class="section-title-de">Anwendungsindikationen</div>
+                    <div class="section-title-en">Speaking Topics</div>
+                </div>
+                <div class="section-ref">Seite 4 von 5<br>Ref. § 4.2 SmPC</div>
+            </div>
+            <div class="indication-grid">
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Virtuelle Wirtschaften</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Videospiele & Politik</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Nicht-westliche KI</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Öffentlicher Einfluss</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Vernetzte Staaten</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Prälegale Technologien</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Regulierung im 21. Jh.</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Deep Work & Deep Time</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Zukunft der VAE & GCC</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Regionale Geopolitik</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Makroökonomie</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Innovationsstrategie</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Next-Gen Urbanismus</span>
+                </div>
+                <div class="indication-pill">
+                    <div class="indication-dot"></div>
+                    <span class="indication-text">Immobilien-Futures</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Certification -->
+        <section class="section" id="zulassung">
+            <div class="section-header">
+                <div class="section-number" style="background: var(--pharma-warm-grey)">5</div>
+                <div class="section-titles">
+                    <div class="section-title-de">Zulassungsnachweise</div>
+                    <div class="section-title-en">Credentials & Certification</div>
+                </div>
+                <div class="section-ref">Seite 5 von 5<br>Ref. § 8.1 SmPC</div>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-stamp">
+                        <div class="cert-degree">PhD</div>
+                        <div class="cert-year">Doktor</div>
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-institution">Massachusetts Institute of Technology</div>
+                        <div class="cert-field">Promotion / Doctoral Studies</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-stamp">
+                        <div class="cert-degree">MSc</div>
+                        <div class="cert-year">2004</div>
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-institution">Bartlett School of Architecture, UCL</div>
+                        <div class="cert-field">Fortgeschrittene Architekturanalyse / Advanced Architectural Analysis</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-stamp">
+                        <div class="cert-degree">BA</div>
+                        <div class="cert-year">2000</div>
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-institution">Brown University</div>
+                        <div class="cert-field">Sozialräumliche Analyse & Design / Socio-spatial Analysis & Design</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-stripes"></div>
+        <div class="footer-main">
+            <div class="footer-warnings">
+                <strong>Aufbewahrungshinweise:</strong>
+                Für Kinder unzugänglich aufbewahren.<br>
+                Vor kurzfristigem Denken schützen.<br>
+                Bei Raumtemperatur lagern.<br>
+                Vor direkter Kurzsichtigkeit bewahren.
+            </div>
+            <div class="footer-logo">
+                <div class="footer-logo-box">
+                    <span class="footer-logo-text">NR</span>
+                </div>
+                <div class="footer-logo-sub">RAFORD PHARMA AG</div>
+            </div>
+            <div class="footer-info">
+                Pharmazeutischer Unternehmer<br>
+                Raford Pharma AG<br>
+                Dubai Future District<br>
+                VAE<br><br>
+                Stand: Januar 2024
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <span class="footer-barcode">||| || ||| || ||| ||| || ||| || ||| ||| || ||| || |||</span>
+                <span class="footer-batch">Ch.-B.: MMXXIV-001 · PZN: 1978-DXB · EAN: 4260123456789</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
